@@ -106,3 +106,31 @@ input{border: 0;}
 .profitgo .profit-top input{font-size: .5rem;height: .5rem;color: #096148;margin: .8rem 0 .3rem;}
 .profitgo .profit-top input::-webkit-input-placeholder{color: #096148;font-size: .35rem;}
 .profitgo .profit-type{width: calc(100% - .6rem);display: flex;align-items: center;justify-content: space-between;height: .8rem;border-top: 1px solid #F4F4F4;margin-top: .2rem;color: #04271D;font-size: .25rem;}
+.profitgo p{margin: 0 .3rem;color: #096148;text-align: right;line-height: .5rem;}
+/*订单中心*/
+.order {background: #F4F4F4;}
+.order .order-nav{height: .8rem;display: flex;align-items: center;background: #FFFFFF;}
+.order .order-nav img{width: .3rem;height: .3rem;}
+.order .nav-text{margin: 0 .1rem 0 .2rem;font-size: .28rem;line-height: .3rem;}
+.order .order-main{background: #FFFFFF;height: calc(100%);overflow-y: scroll;position: relative;}
+.order .order-box{display: flex;padding: .2rem 0;border-bottom: 1px solid #F4F4F4;}
+.order .order-box img{width: 1.4rem;height: 1.4rem;margin: 0 .2rem;}
+.order .order-title{display: flex;margin-bottom: .3rem;align-items: center;justify-content: space-between;}
+.order .order-h1{font-size: .3rem;}
+.order .order-right{flex: 1;margin-right: .2rem;display: flex;flex-direction: column;justify-content: space-between;}
+.order .order-bottom{display: flex;align-items: center;justify-content: space-between;}
+.order .bottom-right{background: #096148;color: #FFFFFF;border-radius:.4rem ;line-height: .5rem;font-size: .2rem;width: 1.5rem;height: .5rem;text-align: center;}
+.order .order-state{color: #096148;}
+.order .bottom-left{flex: 1;}
+.order .order-price{margin-top: .1rem;}
+.order .order-alert{position: absolute;width: 100%;height: calc(100% - 2.6rem);top:1.6rem;left: 0;background: rgba(0,0,0,.5);z-index: 999;}
+.order .nav-tab{width: 100%;background: #FFFFFF;height: .8rem;border-bottom: 1px solid #F4F4F4;text-indent: .2rem;line-height: .8rem;display: flex;align-items: center;justify-content: space-between;}
+.order .nav-tab img{width: .34rem;height: .22rem;margin-right: .2rem;}
+.dcartdetail .order-right {margin-left: .2rem;}
+/*实名认证*/
+.rname{background: #F4F4F4;}
+.rname .input-box{background: #FFFFFF;height: .9rem;border-bottom: 1px solid #F4F4F4;display: flex;align-items: center;}
+.rname .input-box label{width: 1.6rem;text-indent: .2rem;color: #04271D;}
+.rname .input-box input{flex: 1;border-left: 1px solid gainsboro;text-indent: .2rem;}
+.rname .submit{background: #096148;color: #FFFFFF;margin: 2rem .2rem;border-radius: .4rem;height: .8rem;display: flex;align-items: center;justify-content: center;}
+/*首页*/

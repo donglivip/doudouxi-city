@@ -9,47 +9,53 @@
 		<title></title>
 	</head>
 	<body>
-		<div class="wrapper profit integral">
+		<div class="wrapper rname">
 			<!--头部-->
 			<div class="header">
 				<a class="head-tab" href="javascript:history.back()">
 					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
 				</a>
 				<div class="head-main">
-					我的钱包
+					认证中心
 				</div>
-				<a class="head-tab" href="./profitdetail.html">
-					明细
+				<a class="head-tab" href="newcenter.html">
+					
 				</a>
 			</div>
 			<!--中间主体-->
-			<div class="main big-main">
-				<div class="profit-top">
-					<div class="subtitile">账户余额</div>
-					<div class="price">355.5 <span style="font-size: .2rem;">(元)</span> </div>
+			<div class="main">
+				<div class="input-box">
+					<label for="uname">支付宝账号</label>
+					<input type="text" placeholder="请输入支付宝账号" id="uname" name="uname"/>
 				</div>
-				<a class="integral-tab" href="rname.html">
-					<div>
-						绑定支付宝
+				<div class="input-box">
+					<label for="uname">密码</label>
+					<input type="text" placeholder="请输入密码" id="uname" name="uname"/>
+				</div>
+				<div class="submit" @click="alertshow">
+					提交
+				</div>
+				<div class="alert" v-show="alertboo" @click="alertshow">
+					<div class="alert-inner">
+						<img src="img/Close-2 Copy 2@2x.png"/>
+						<div class="text">提交失败</div>
+						<div class="button">
+							确定
+						</div>
 					</div>
-					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
-				</a>
-				<a class="integral-tab" href="profitgo.html">
-					<div>
-						提现
-					</div>
-					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
-				</a>
+				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-
+					alertboo:false
 				},
 				methods:{
-					
+					alertshow:function(){
+						this.alertboo=!this.alertboo
+					}
 				},
 				mounted:function(){
 					
