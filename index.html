@@ -11,7 +11,53 @@
 	<body>
 		<div class="wrapper index">
 			<div class="main">
-				
+				<img src="img/index.jpg" class="banner"/>
+				<div class="notice">
+					<img src="img/notice.png"/>
+					<a href="lxidi.html">
+						公告：恭喜城市合伙人张豆豆获本次评比第一名
+					</a>
+				</div>
+				<div class="nav-box">
+						<a class="nav-item" href="trade.html">
+							<img src="img/nav0.png"/>
+							<div>交易收入</div>
+						</a>
+						<a class="nav-item" href="recommend.html">
+							<img src="img/nav1.png"/>
+							<div>推荐收入</div>
+						</a>
+						<div class="nav-item" @click="tost">
+							<img src="img/nav2.png"/>
+							<div>广告收入</div>
+						</div>
+					</div>
+					<div class="nav-box" style="flex: 1;">
+						<a class="nav-item" href="community.html">
+							<img src="img/nav3.png"/>
+							<div>社区合伙人</div>
+						</a>
+						<a class="nav-item" href="complaint.html">
+							<img src="img/nav4.png"/>
+							<div>投诉管理</div>
+						</a>
+						<a class="nav-item" href="examine.html">
+							<img src="img/nav5.png"/>
+							<div>审批管理</div>
+						</a>
+						<a class="nav-item" href="model.html">
+							<img src="img/nav6.png"/>
+							<div>模块管理</div>
+						</a>
+						<a class="nav-item" href="alert.html">
+							<img src="img/nav7.png"/>
+							<div>警报系统</div>
+						</a>
+						<a class="nav-item" href="share.html">
+							<img src="img/nav8.png"/>
+							<div>分享赚钱</div>
+						</a>
+					</div>
 			</div>
 			<!--底部-->
 			<div class="bottom">
@@ -24,7 +70,7 @@
 				<a class="bottom-tab" href="newcenter.html">
 					<img src="img/bottom02.png"/>
 					<div class="bottom-text">
-						订单
+						消息
 					</div>
 				</a>
 				<a class="bottom-tab" href="usercenter.html">
@@ -36,4 +82,17 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript">
+		var myvue=new Vue({
+			el:'.wrapper',
+			data:{
+				
+			},
+			methods:{
+				tost:function(){
+					plus.nativeUI.toast('功能正在开发中~')
+				}
+			}
+		})
+	</script>
 </html>

@@ -1,4 +1,4 @@
-﻿{
+{
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H5024CA90",/*应用的标识，创建应用时自动生成，勿手动修改*/
     "name": "豆豆洗-城市合伙人",/*应用名称，程序桌面图标名称*/
@@ -135,5 +135,155 @@
                 }
             }
         }
-    }
+    },
+	"dependencies": {
+		"pages": {
+			"newcenter.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"index.html": {
+				"resources": [],
+				"refer": [
+					"newcenter.html",
+					"usercenter.html",
+					"trade.html",
+					"lxidi.html",
+					"recommend.html",
+					"community.html"
+				],
+				"priority": 0
+			},
+			"usercenter.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"trade.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"lxidi.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"recommend.html": {
+				"resources": [],
+				"refer": [
+					"search.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"search.html": {
+				"resources": [],
+				"refer": [
+					"recommend.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"img/Arrow_simple_rightt Copy 3@2x.png",
+				"wlogin.html",
+				"img/bottom03.png",
+				"img/number (2).png",
+				"img/nav3.png",
+				"img/ios6p.png",
+				"img/notice.png",
+				"img/Arrow_right@2x.png",
+				"img/ios5.png",
+				"complaint.html",
+				"plogin.html",
+				"img/Mail Copy@2x.png",
+				"img/wpay.png",
+				"img/wxin.png",
+				"namechange.html",
+				"img/a720.png",
+				"img/search02.png",
+				"new-gonggao.html",
+				"img/model2.png",
+				"img/index.jpg",
+				"img/Group 10@2x.png",
+				"new-order.html",
+				"sharedetail.html",
+				"img/index.png",
+				"img/QQ@2x.png",
+				"css/main.css",
+				"img/Arrow_Simple_left Copy@2x.png",
+				"profitgo.html",
+				"img/Close-2 Copy 6@2x.png",
+				"img/bottom02.png",
+				"setting.html",
+				"img/bottom03-active.png",
+				"mlogin.html",
+				"img/shop.jpg",
+				"img/a1080.png",
+				"examinedetail.html",
+				"js/rem.js",
+				"img/nav1.png",
+				"img/a480.png",
+				"img/search.png",
+				"img/nav8.png",
+				"img/nav7.png",
+				"examine.html",
+				"rname.html",
+				"img/qq (2).png",
+				"img/number (1).png",
+				"img/Check@2x.png",
+				"img/Settings-2 Copy@2x.png",
+				"share.html",
+				"img/nav4.png",
+				"img/Share@3x.png",
+				"img/Group 2@2x.png",
+				"img/wallet@2x.png",
+				"integral.html",
+				"img/nav6.png",
+				"model.html",
+				"img/nav0.png",
+				"img/bottom02-active.png",
+				"img/avatar.jpg",
+				"img/bottom01.png",
+				"profitdetail.html",
+				"img/model1.png",
+				"js/vue.js",
+				"img/nav5.png",
+				"img/Alert@2x.png",
+				"img/model3.png",
+				"help.html",
+				"img/hanger-1@3x.png",
+				"img/ios6.png",
+				"pchange.html",
+				"question-detail.html",
+				"js/jquery.min.js",
+				"img/bottom01-active.png",
+				"img/Close-2 Copy 9@2x.png",
+				"question.html",
+				"shop.html",
+				"img/wquan.png",
+				"img/nav2.png",
+				"pay.html",
+				"img/erweima.png",
+				"alert.html",
+				"aboutus.html",
+				"img/model0.png",
+				"img/640.png",
+				"img/nav9.png",
+				"img/iosx.png",
+				"css/reset.css"
+			]
+		}
+	}
 }

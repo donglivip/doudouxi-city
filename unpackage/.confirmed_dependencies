@@ -1,1 +1,43 @@
-null
+{
+	"newcenter.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"index.html": {
+		"refer": [
+			"newcenter.html",
+			"usercenter.html",
+			"trade.html",
+			"lxidi.html",
+			"recommend.html",
+			"community.html"
+		]
+	},
+	"usercenter.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"trade.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"lxidi.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"recommend.html": {
+		"refer": [
+			"search.html",
+			"index.html"
+		]
+	},
+	"search.html": {
+		"refer": [
+			"recommend.html"
+		]
+	}
+}
