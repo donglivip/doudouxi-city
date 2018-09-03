@@ -45,6 +45,7 @@ input{border: 0;}
 .new .new-title{display: flex;justify-content: space-between;}
 .new .title{color: #021A13;font-size:.28rem;}
 .new .time{color: #B8B8B8;}
+.new .text{font-size: .1rem;color: #666666;}
 /*帮助*/
 .help .help-item{height: .8rem;border-bottom: 1px solid #F4F4F4;display: flex;align-items: center;justify-content: space-between;}
 .help .help-item div{margin: 0 .2rem;}
@@ -54,7 +55,7 @@ input{border: 0;}
 .neworder .nav-tab{margin:0 .2rem;padding: .3rem;}
 .neworder .new-title{font-size: .35rem;margin-bottom: .2rem;}
 .neworder .nav-title{text-align: center;color: #909090;line-height: .7rem;}
-.new .new-main,.neworder .nav-tab{height: auto;}
+.neworder .nav-tab{height: auto;}
 .neworder .text{line-height: .35rem;}
 /*个人中心*/
 .usercenter{background: #F4F4F4;}
@@ -190,7 +191,7 @@ input{border: 0;}
 .complaint .order-bottom{line-height: .4rem;flex-wrap: wrap;}
 .complaint .bf4{border-bottom: 1px solid #F4F4F4;}
 .complaint .setting{display: flex;align-items: center;height: .8rem;margin-top: .2rem;}
-.complaint .setting a{width: 2rem;height: .6rem;border-radius: .4rem;display: flex;align-items: center;justify-content: center;margin: 0 .1rem;}
+.complaint .setting a{width: 2.5rem;height: .6rem;border-radius: .4rem;display: flex;align-items: center;justify-content: center;margin: 0 .1rem;font-size: .22rem;}
 .complaint .setting .btn01{border: 1px solid #096148;color: #096148;}
 .complaint .setting .btn02{background:#096148;color: #FFFFFF;}
 .complaint .order-price,.complaint .order-time{width: 50%;}
@@ -248,7 +249,7 @@ input{border: 0;}
 .orderdetail .active{height: auto;padding-bottom: .3rem;}
 .orderdetail .line{text-decoration: line-through;font-size: .2rem;color: #999999;}
 .orderdetail .hji{color: #333333!important;font-size: .26rem;}
-.orderdetail .detailtop{margin-top: .2rem;border-bottom: 1px solid #F4F4F4;font-weight: 600;}
+.orderdetail .detailtop{margin-top: .2rem;border-bottom: 1px solid #F4F4F4;}
 .orderdetail .inner div{margin: 0 .3rem;}
 .orderdetail textarea{width: calc(100% - .6rem);height: 1rem;margin: .3rem auto;border: 1px solid #999999;color: #999999;border-radius: .1rem;padding: .1rem;}
 .orderdetail .btn{border: 1px solid #999999;color: #999999;border-radius: .3rem;padding: .1rem .3rem;margin:0 .1rem;font-size: .25rem;line-height: .25rem;}
@@ -272,3 +273,4 @@ input{border: 0;}
 .communitydetail .tab-text:first-of-type{justify-content: flex-start;}
 .communitydetail .user-tab .myimg{width: .15rem;margin-right: .3rem;}
 .communitydetail .top{margin-top: .2rem;}
+.complaintb{border: 1px solid #096148;color: #096148;border-radius: .5rem;margin:0 .2rem;height: .6rem;display: flex;align-items: center;justify-content: center;font-size: .22rem;}
