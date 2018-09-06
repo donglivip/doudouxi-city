@@ -1,7 +1,8 @@
 {
 	"newcenter.html": {
 		"refer": [
-			"index.html"
+			"index.html",
+			"usercenter.html"
 		]
 	},
 	"index.html": {
@@ -16,7 +17,8 @@
 	},
 	"usercenter.html": {
 		"refer": [
-			"index.html"
+			"index.html",
+			"newcenter.html"
 		]
 	},
 	"trade.html": {

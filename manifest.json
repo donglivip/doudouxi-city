@@ -141,7 +141,8 @@
 			"newcenter.html": {
 				"resources": [],
 				"refer": [
-					"index.html"
+					"index.html",
+					"usercenter.html"
 				],
 				"priority": 0
 			},
@@ -160,7 +161,8 @@
 			"usercenter.html": {
 				"resources": [],
 				"refer": [
-					"index.html"
+					"index.html",
+					"newcenter.html"
 				],
 				"priority": 0
 			},
