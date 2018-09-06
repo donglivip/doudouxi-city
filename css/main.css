@@ -258,7 +258,7 @@ input{border: 0;}
 .model .main{padding-top: .4rem;box-sizing: border-box;}
 .model .main .img-box{width: 1.5rem;height: 1.5rem;margin: .3rem .4rem;display: inline-block;}
 .model .main img{width: 1.5rem;height: 1.5rem;}
-.model .main p{text-align: center;font-size: .25rem;line-height: .5rem;}
+.model .main p{text-align: center;font-size: .25rem;line-height: .5rem;white-space: nowrap;}
 /*警报系统*/
 .alert01{background: #FFFFFF;}
 .red{color: red;}
