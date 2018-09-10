@@ -14,74 +14,75 @@
 				<img src="img/index.jpg" class="banner"/>
 				<div class="notice">
 					<img src="img/notice.png"/>
-					<a href="lxidi.html">
+					<div @click="opennew('lxidi')">
 						公告：恭喜城市合伙人张豆豆获本次评比第一名
-					</a>
+					</div>
 				</div>
 				<div class="nav-box">
-						<a class="nav-item" href="trade.html">
+						<div class="nav-item" @click="opennew('trade')">
 							<img src="img/nav0.png"/>
 							<div>交易收入</div>
-						</a>
-						<a class="nav-item" href="recommend.html">
+						</div>
+						<div class="nav-item" @click="opennew('recommend')">
 							<img src="img/nav1.png"/>
 							<div>推荐收入</div>
-						</a>
+						</div>
 						<div class="nav-item" @click="tost">
 							<img src="img/nav2.png"/>
 							<div>广告收入</div>
 						</div>
 					</div>
 					<div class="nav-box" style="flex: 1;">
-						<a class="nav-item" href="community.html">
+						<div class="nav-item" @click="opennew('community')">
 							<img src="img/nav3.png"/>
 							<div>社区合伙人</div>
-						</a>
-						<a class="nav-item" href="complaint.html">
+						</div>
+						<div class="nav-item" @click="opennew('complaint')">
 							<img src="img/nav4.png"/>
 							<div>投诉管理</div>
-						</a>
-						<a class="nav-item" href="examine.html">
+						</div>
+						<div class="nav-item" @click="opennew('examine')">
 							<img src="img/nav5.png"/>
 							<div>审批管理</div>
-						</a>
-						<a class="nav-item" href="model.html">
+						</div>
+						<div class="nav-item" @click="opennew('model')">
 							<img src="img/nav6.png"/>
 							<div>模块管理</div>
-						</a>
-						<a class="nav-item" href="alert.html">
+						</div>
+						<div class="nav-item" @click="opennew('alert')">
 							<img src="img/nav7.png"/>
 							<div>警报系统</div>
-						</a>
-						<a class="nav-item" href="share.html">
+						</div>
+						<div class="nav-item" @click="opennew('share')">
 							<img src="img/nav8.png"/>
 							<div>分享赚钱</div>
-						</a>
+						</div>
 					</div>
 			</div>
 			<!--底部-->
 			<div class="bottom">
-				<a class="bottom-tab">
+				<div class="bottom-tab">
 					<img src="img/bottom01-active.png"/>
 					<div class="bottom-text active">
 						首页
 					</div>
-				</a>
-				<a class="bottom-tab" href="newcenter.html">
+				</div>
+				<div class="bottom-tab" @click="opennew('newcenter')">
 					<img src="img/bottom02.png"/>
 					<div class="bottom-text">
 						消息
 					</div>
-				</a>
-				<a class="bottom-tab" href="usercenter.html">
+				</div>
+				<div class="bottom-tab" @click="opennew('usercenter')">
 					<img src="img/bottom03.png"/>
 					<div class="bottom-text">
 						我的
 					</div>
-				</a>
+				</div>
 			</div>
 		</div>
 	</body>
+	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var myvue=new Vue({
 			el:'.wrapper',
@@ -91,6 +92,12 @@
 			methods:{
 				tost:function(){
 					plus.nativeUI.toast('功能正在开发中~')
+				},
+				opennew:function(target,id){
+						mui.openWindow({
+							url:'./'+target+'.html',
+							id:target
+						})
 				}
 			}
 		})

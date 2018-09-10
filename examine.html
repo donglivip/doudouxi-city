@@ -12,15 +12,15 @@
 		<div class="wrapper order trade">
 			<!--头部-->
 			<div class="header">
-				<a class="head-tab" href="javascript:history.back()">
+				<div class="head-tab mui-action-back">
 					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
-				</a>
+				</div>
 				<div class="head-main">
 					审批管理
 				</div>
-				<a class="head-tab" href="examinedetail.html">
+				<div class="head-tab" @click="opennew('examinedetail')">
 					审批记录
-				</a>
+				</div>
 			</div>
 			<!--中间主体-->
 			<div class="main big-main complaint">
@@ -41,7 +41,7 @@
 								<div class="order-bottom">
 									<div class="order-price">我的物料包</div>
 									<div class="order-time setting">
-										<a class="btn02" href="shop.html" style="margin: 0;">购买物料包</a>
+										<a class="btn02" href="javascript:void(0)" style="margin: 0;" @click="opennew('shop')">购买物料包</a>
 									</div>
 								</div>
 								<div class="order-bottom">
@@ -106,6 +106,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
@@ -116,12 +117,11 @@
 					indexchange:function(index){
 						this.myindex=index
 					},
-					opennew:function(type){
-						if(type=='q'){
-							window.location.href='./havetype.html'
-						}else{
-							
-						}
+					opennew:function(target,id){
+						mui.openWindow({
+							url:'./'+target+'.html',
+							id:target
+						})
 					}
 				},
 				mounted:function(){
