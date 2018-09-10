@@ -2,7 +2,9 @@
 	"newcenter.html": {
 		"refer": [
 			"index.html",
-			"usercenter.html"
+			"usercenter.html",
+			"new-gonggao.html",
+			"new-order.html"
 		]
 	},
 	"index.html": {
@@ -12,18 +14,28 @@
 			"trade.html",
 			"lxidi.html",
 			"recommend.html",
-			"community.html"
+			"community.html",
+			"complaint.html",
+			"examine.html",
+			"model.html",
+			"alert.html",
+			"share.html"
 		]
 	},
 	"usercenter.html": {
 		"refer": [
 			"index.html",
-			"newcenter.html"
+			"newcenter.html",
+			"integral.html",
+			"setting.html",
+			"help.html",
+			"aboutus.html"
 		]
 	},
 	"trade.html": {
 		"refer": [
-			"index.html"
+			"index.html",
+			"tradedetail.html"
 		]
 	},
 	"lxidi.html": {
@@ -40,6 +52,174 @@
 	"search.html": {
 		"refer": [
 			"recommend.html"
+		]
+	},
+	"profitdetail.html": {
+		"refer": [
+			"integral.html"
+		]
+	},
+	"integral.html": {
+		"refer": [
+			"profitdetail.html",
+			"rname.html",
+			"profitgo.html",
+			"usercenter.html"
+		]
+	},
+	"new-gonggao.html": {
+		"refer": [
+			"newcenter.html"
+		]
+	},
+	"new-order.html": {
+		"refer": [
+			"newcenter.html"
+		]
+	},
+	"rname.html": {
+		"refer": [
+			"integral.html"
+		]
+	},
+	"profitgo.html": {
+		"refer": [
+			"integral.html"
+		]
+	},
+	"pchange.html": {
+		"refer": [
+			"setting.html"
+		]
+	},
+	"wlogin.html": {
+		"refer": [
+			"setting.html"
+		]
+	},
+	"namechange.html": {
+		"refer": [
+			"setting.html"
+		]
+	},
+	"setting.html": {
+		"refer": [
+			"pchange.html",
+			"wlogin.html",
+			"namechange.html",
+			"usercenter.html"
+		]
+	},
+	"question-detail.html": {
+		"refer": [
+			"question.html"
+		]
+	},
+	"help.html": {
+		"refer": [
+			"usercenter.html",
+			"question.html"
+		]
+	},
+	"question.html": {
+		"refer": [
+			"question-detail.html",
+			"help.html"
+		]
+	},
+	"aboutus.html": {
+		"refer": [
+			"usercenter.html"
+		]
+	},
+	"community.html": {
+		"refer": [
+			"communitydetail.html",
+			"index.html"
+		]
+	},
+	"people.html": {
+		"refer": [
+			"peopledetail.html",
+			"communitydetail.html"
+		]
+	},
+	"device.html": {
+		"refer": [
+			"communitydetail.html"
+		]
+	},
+	"peopledetail.html": {
+		"refer": [
+			"people.html"
+		]
+	},
+	"communitydetail.html": {
+		"refer": [
+			"people.html",
+			"device.html",
+			"community.html",
+			"shop02.html"
+		]
+	},
+	"shop02.html": {
+		"refer": [
+			"communitydetail.html"
+		]
+	},
+	"complaintdetail.html": {
+		"refer": [
+			"complaint.html"
+		]
+	},
+	"complaint.html": {
+		"refer": [
+			"complaintdetail.html",
+			"index.html"
+		]
+	},
+	"examine.html": {
+		"refer": [
+			"examinedetail.html",
+			"shop.html",
+			"index.html"
+		]
+	},
+	"shop.html": {
+		"refer": [
+			"examine.html",
+			"pay.html"
+		]
+	},
+	"examinedetail.html": {
+		"refer": [
+			"examine.html"
+		]
+	},
+	"pay.html": {
+		"refer": [
+			"shop.html"
+		]
+	},
+	"alert.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"model.html": {
+		"refer": [
+			"index.html"
+		]
+	},
+	"sharedetail.html": {
+		"refer": [
+			"share.html"
+		]
+	},
+	"share.html": {
+		"refer": [
+			"sharedetail.html",
+			"index.html"
 		]
 	}
 }

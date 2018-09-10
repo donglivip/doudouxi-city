@@ -142,7 +142,9 @@
 				"resources": [],
 				"refer": [
 					"index.html",
-					"usercenter.html"
+					"usercenter.html",
+					"new-gonggao.html",
+					"new-order.html"
 				],
 				"priority": 0
 			},
@@ -154,7 +156,12 @@
 					"trade.html",
 					"lxidi.html",
 					"recommend.html",
-					"community.html"
+					"community.html",
+					"complaint.html",
+					"examine.html",
+					"model.html",
+					"alert.html",
+					"share.html"
 				],
 				"priority": 0
 			},
@@ -162,14 +169,19 @@
 				"resources": [],
 				"refer": [
 					"index.html",
-					"newcenter.html"
+					"newcenter.html",
+					"integral.html",
+					"setting.html",
+					"help.html",
+					"aboutus.html"
 				],
 				"priority": 0
 			},
 			"trade.html": {
 				"resources": [],
 				"refer": [
-					"index.html"
+					"index.html",
+					"tradedetail.html"
 				],
 				"priority": 0
 			},
@@ -194,12 +206,239 @@
 					"recommend.html"
 				],
 				"priority": 0
+			},
+			"profitdetail.html": {
+				"resources": [],
+				"refer": [
+					"integral.html"
+				],
+				"priority": 0
+			},
+			"integral.html": {
+				"resources": [],
+				"refer": [
+					"profitdetail.html",
+					"rname.html",
+					"profitgo.html",
+					"usercenter.html"
+				],
+				"priority": 0
+			},
+			"new-gonggao.html": {
+				"resources": [],
+				"refer": [
+					"newcenter.html"
+				],
+				"priority": 0
+			},
+			"new-order.html": {
+				"resources": [],
+				"refer": [
+					"newcenter.html"
+				],
+				"priority": 0
+			},
+			"rname.html": {
+				"resources": [],
+				"refer": [
+					"integral.html"
+				],
+				"priority": 0
+			},
+			"profitgo.html": {
+				"resources": [],
+				"refer": [
+					"integral.html"
+				],
+				"priority": 0
+			},
+			"pchange.html": {
+				"resources": [],
+				"refer": [
+					"setting.html"
+				],
+				"priority": 0
+			},
+			"wlogin.html": {
+				"resources": [],
+				"refer": [
+					"setting.html"
+				],
+				"priority": 0
+			},
+			"namechange.html": {
+				"resources": [],
+				"refer": [
+					"setting.html"
+				],
+				"priority": 0
+			},
+			"setting.html": {
+				"resources": [],
+				"refer": [
+					"pchange.html",
+					"wlogin.html",
+					"namechange.html",
+					"usercenter.html"
+				],
+				"priority": 0
+			},
+			"question-detail.html": {
+				"resources": [],
+				"refer": [
+					"question.html"
+				],
+				"priority": 0
+			},
+			"help.html": {
+				"resources": [],
+				"refer": [
+					"usercenter.html",
+					"question.html"
+				],
+				"priority": 0
+			},
+			"question.html": {
+				"resources": [],
+				"refer": [
+					"question-detail.html",
+					"help.html"
+				],
+				"priority": 0
+			},
+			"aboutus.html": {
+				"resources": [],
+				"refer": [
+					"usercenter.html"
+				],
+				"priority": 0
+			},
+			"community.html": {
+				"resources": [],
+				"refer": [
+					"communitydetail.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"people.html": {
+				"resources": [],
+				"refer": [
+					"peopledetail.html",
+					"communitydetail.html"
+				],
+				"priority": 0
+			},
+			"device.html": {
+				"resources": [],
+				"refer": [
+					"communitydetail.html"
+				],
+				"priority": 0
+			},
+			"peopledetail.html": {
+				"resources": [],
+				"refer": [
+					"people.html"
+				],
+				"priority": 0
+			},
+			"communitydetail.html": {
+				"resources": [],
+				"refer": [
+					"people.html",
+					"device.html",
+					"community.html",
+					"shop02.html"
+				],
+				"priority": 0
+			},
+			"shop02.html": {
+				"resources": [],
+				"refer": [
+					"communitydetail.html"
+				],
+				"priority": 0
+			},
+			"complaintdetail.html": {
+				"resources": [],
+				"refer": [
+					"complaint.html"
+				],
+				"priority": 0
+			},
+			"complaint.html": {
+				"resources": [],
+				"refer": [
+					"complaintdetail.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"examine.html": {
+				"resources": [],
+				"refer": [
+					"examinedetail.html",
+					"shop.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"shop.html": {
+				"resources": [],
+				"refer": [
+					"examine.html",
+					"pay.html"
+				],
+				"priority": 0
+			},
+			"examinedetail.html": {
+				"resources": [],
+				"refer": [
+					"examine.html"
+				],
+				"priority": 0
+			},
+			"pay.html": {
+				"resources": [],
+				"refer": [
+					"shop.html"
+				],
+				"priority": 0
+			},
+			"alert.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"model.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
+			},
+			"sharedetail.html": {
+				"resources": [],
+				"refer": [
+					"share.html"
+				],
+				"priority": 0
+			},
+			"share.html": {
+				"resources": [],
+				"refer": [
+					"sharedetail.html",
+					"index.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
 			"resources": [
 				"img/Arrow_simple_rightt Copy 3@2x.png",
-				"wlogin.html",
 				"img/bottom03.png",
 				"img/number (2).png",
 				"img/nav3.png",
@@ -207,79 +446,57 @@
 				"img/notice.png",
 				"img/Arrow_right@2x.png",
 				"img/ios5.png",
-				"complaint.html",
 				"plogin.html",
 				"img/Mail Copy@2x.png",
 				"img/wpay.png",
 				"img/wxin.png",
-				"namechange.html",
 				"img/a720.png",
 				"img/search02.png",
-				"new-gonggao.html",
 				"img/model2.png",
 				"img/index.jpg",
 				"img/Group 10@2x.png",
-				"new-order.html",
-				"sharedetail.html",
 				"img/index.png",
 				"img/QQ@2x.png",
 				"css/main.css",
 				"img/Arrow_Simple_left Copy@2x.png",
-				"profitgo.html",
 				"img/Close-2 Copy 6@2x.png",
 				"img/bottom02.png",
-				"setting.html",
 				"img/bottom03-active.png",
 				"mlogin.html",
 				"img/shop.jpg",
 				"img/a1080.png",
-				"examinedetail.html",
 				"js/rem.js",
 				"img/nav1.png",
 				"img/a480.png",
 				"img/search.png",
 				"img/nav8.png",
 				"img/nav7.png",
-				"examine.html",
-				"rname.html",
 				"img/qq (2).png",
 				"img/number (1).png",
 				"img/Check@2x.png",
 				"img/Settings-2 Copy@2x.png",
-				"share.html",
 				"img/nav4.png",
 				"img/Share@3x.png",
 				"img/Group 2@2x.png",
 				"img/wallet@2x.png",
-				"integral.html",
 				"img/nav6.png",
-				"model.html",
 				"img/nav0.png",
 				"img/bottom02-active.png",
 				"img/avatar.jpg",
 				"img/bottom01.png",
-				"profitdetail.html",
 				"img/model1.png",
 				"js/vue.js",
 				"img/nav5.png",
 				"img/Alert@2x.png",
 				"img/model3.png",
-				"help.html",
 				"img/hanger-1@3x.png",
 				"img/ios6.png",
-				"pchange.html",
-				"question-detail.html",
 				"js/jquery.min.js",
 				"img/bottom01-active.png",
 				"img/Close-2 Copy 9@2x.png",
-				"question.html",
-				"shop.html",
 				"img/wquan.png",
 				"img/nav2.png",
-				"pay.html",
 				"img/erweima.png",
-				"alert.html",
-				"aboutus.html",
 				"img/model0.png",
 				"img/640.png",
 				"img/nav9.png",

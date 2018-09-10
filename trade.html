@@ -61,7 +61,7 @@
 							<div class="radius"></div>
 						</div>
 					</div>
-					<div class="order-box">
+					<div class="order-box" @click="opennew('tradedetail')">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">郑淳嫔</div>
@@ -77,7 +77,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="order-box">
+					<div class="order-box" @click="opennew('tradedetail')">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">郑淳嫔</div>
@@ -93,7 +93,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="order-box">
+					<div class="order-box" @click="opennew('tradedetail')">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">郑淳嫔</div>
@@ -112,6 +112,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
@@ -122,12 +123,11 @@
 					indexchange:function(index){
 						this.myindex=index
 					},
-					opennew:function(type){
-						if(type=='q'){
-							window.location.href='./havetype.html'
-						}else{
-							
-						}
+					opennew:function(target,id){
+						mui.openWindow({
+							url:'./'+target+'.html',
+							id:target
+						})
 					}
 				},
 				mounted:function(){

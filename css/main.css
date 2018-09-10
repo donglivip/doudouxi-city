@@ -26,7 +26,7 @@ input{border: 0;}
 .plogin .subtitle{font-size: .24rem;margin: .2rem 0;}
 .plogin .input-box{border-bottom: 1px solid #F4F4F4;display: flex;align-items: center;height: .8rem;margin-bottom: .3rem;}
 .plogin .input-box input{height: .35rem;flex: 1;border-left: 1px solid gainsboro;text-indent: .2rem;}
-.plogin .addcode{color: #B8B8B8;border: 1px solid #B8B8B8;border-radius: .3rem;width: 1.5rem;height: .5rem;display: flex;align-items: center;justify-content: center;}
+.plogin .addcode{color: #B8B8B8;border: 1px solid #B8B8B8;border-radius: .3rem;width: 1.5rem;height: .5rem;display: flex;align-items: center;justify-content: center;font-size: .2rem;}
 .plogin .login{height: 1rem;border-radius: .5rem;color: #FFFFFF;font-size: .34rem;display: flex;align-items: center;justify-content: center;margin-top: 1.3rem;background: #096148;}
 .plogin .login-type{display: flex;justify-content: flex-end;margin-top: .2rem;margin-right: .1rem;}
 .plogin .three{flex: 1;display: flex;flex-direction: column;justify-content: flex-end;align-items: center;}
@@ -45,7 +45,7 @@ input{border: 0;}
 .new .new-title{display: flex;justify-content: space-between;}
 .new .title{color: #021A13;font-size:.28rem;}
 .new .time{color: #B8B8B8;}
-.new .text{font-size: .2rem;color: #666666;}
+.new .text{font-size: .24rem;color: #666666;}
 /*帮助*/
 .help .help-item{height: .8rem;border-bottom: 1px solid #F4F4F4;display: flex;align-items: center;justify-content: space-between;}
 .help .help-item div{margin: 0 .2rem;}
@@ -104,7 +104,7 @@ input{border: 0;}
 .integral .integral-tab img{width: .15rem;margin-right: .2rem;}
 /*去提现*/
 .profitgo .profit-top{align-items: flex-start;padding-left: .3rem;height: auto;}
-.profitgo .profit-top input{font-size: .5rem;height: .5rem;color: #096148;margin: .8rem 0 .3rem;}
+.profitgo .profit-top input{font-size: .5rem;height: .5rem;color: #096148;margin: .3rem 0 .3rem;}
 .profitgo .profit-top input::-webkit-input-placeholder{color: #096148;font-size: .35rem;}
 .profitgo .profit-type{width: calc(100% - .6rem);display: flex;align-items: center;justify-content: space-between;height: .8rem;border-top: 1px solid #F4F4F4;margin-top: .2rem;color: #04271D;font-size: .25rem;}
 .profitgo p{margin: 0 .3rem;color: #096148;text-align: right;line-height: .5rem;}
@@ -141,9 +141,9 @@ input{border: 0;}
 .index .notice{display: flex;background: #FFFFFF;align-items: center;height: .9rem;}
 .index .notice img{width: .4rem;margin:0 .2rem;}
 .index .notice a{flex: 1;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: .28rem;display: block;position: relative;top: .05rem;}
-.index .nav-box{display: flex;background: #FFFFFF;margin: .2rem;border-radius: .2rem;align-items: center;height: 2.5rem;justify-content: space-around;font-size: .26rem;flex-wrap: wrap;}
+.index .nav-box{display: flex;background: #FFFFFF;margin:.1rem .2rem;border-radius: .2rem;align-items: center;height: 2.5rem;justify-content: space-around;font-size: .26rem;flex-wrap: wrap;}
 .index .nav-box .nav-item{display: flex;flex-direction: column;align-items: center;justify-content: center;width: 33%;}
-.index .nav-box img{width: .65rem;margin-bottom: .11rem;}
+.index .nav-box img{width: .65rem;margin-bottom: .3rem;}
 /*分享*/
 .share{background: #F4F4F4;}
 .share .help-item{justify-content: flex-start;background: #FFFFFF;}
@@ -217,8 +217,8 @@ input{border: 0;}
 .nav .shop .img-box img{max-height: 100%;max-width: 100%;margin: 0 auto;}
 .nav .price-box{display: flex;align-items: center;justify-content: space-between;font-size: .24rem;height: .3rem;margin: 0 .2rem;}
 .nav .price{color: #F6403A;}
-.nav .add-box{display: flex;align-items: center;justify-content: center;}
-.nav .add-box img{width: .4rem;height: .4rem;}
+.nav .add-box{display: flex;align-items: center;justify-content: center;margin-top: .2rem;}
+.nav .add-box img{width: .3rem;height: .3rem;}
 .nav .num{width: .5rem;text-align: center;}
 .nav .cart-alert{width: 100%;height: calc(100% - 1rem);position: absolute;top: 0;left: 0;background: rgba(0,0,0,.5);display: flex;flex-direction: column;justify-content: flex-end;}
 .nav .cart-inner{background: #FFFFFF;}
