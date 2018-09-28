@@ -221,5 +221,16 @@
 			"sharedetail.html",
 			"index.html"
 		]
+	},
+	"plogin.html": {
+		"refer": [
+			"Agreement.html",
+			"index.html"
+		]
+	},
+	"mlogin.html": {
+		"refer": [
+			"index.html"
+		]
 	}
 }

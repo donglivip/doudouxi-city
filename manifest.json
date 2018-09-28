@@ -10,7 +10,7 @@
     "icons": {
         "72": "icon.png"
     },
-    "launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path": "mlogin.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -434,6 +434,21 @@
 					"index.html"
 				],
 				"priority": 0
+			},
+			"plogin.html": {
+				"resources": [],
+				"refer": [
+					"Agreement.html",
+					"index.html"
+				],
+				"priority": 0
+			},
+			"mlogin.html": {
+				"resources": [],
+				"refer": [
+					"index.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -446,7 +461,6 @@
 				"img/notice.png",
 				"img/Arrow_right@2x.png",
 				"img/ios5.png",
-				"plogin.html",
 				"img/Mail Copy@2x.png",
 				"img/wpay.png",
 				"img/wxin.png",
@@ -462,7 +476,6 @@
 				"img/Close-2 Copy 6@2x.png",
 				"img/bottom02.png",
 				"img/bottom03-active.png",
-				"mlogin.html",
 				"img/shop.jpg",
 				"img/a1080.png",
 				"js/rem.js",
