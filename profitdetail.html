@@ -23,47 +23,19 @@
 				</div>
 			</div>
 			<!--中间主体-->
-			<div class="main big-main">
-				<div class="order-main">
-					<div class="order-box">
+			<div class="main big-main" @scroll="myscroll">
+				<div class="main-inner" style="background: #FFFFFF;">
+					<div class="order-box" v-for="val in mydata">
 						<div class="order-right">
 							<div class="order-title">
 								<div class="order-h1">
-									提现
+									{{val.usCpfdReason}}
 								</div>
-								<div class="order-state">-1277</div>
+								<div class="order-state">{{val.usCpfdPrice}}</div>
 							</div>
 							<div class="order-bottom">
-								<div class="order-price">余额:￥30.00</div>
-								<div class="order-time">2018-07-18</div>
-							</div>
-						</div>
-					</div>
-					<div class="order-box">
-						<div class="order-right">
-							<div class="order-title">
-								<div class="order-h1">
-									充值
-								</div>
-								<div class="order-state">+1277</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">余额:￥30.00</div>
-								<div class="order-time">2018-07-18</div>
-							</div>
-						</div>
-					</div>
-					<div class="order-box">
-						<div class="order-right">
-							<div class="order-title">
-								<div class="order-h1">
-									洗涤消费
-								</div>
-								<div class="order-state">-1277</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">余额:￥30.00</div>
-								<div class="order-time">2018-07-18</div>
+								<div class="order-price">余额:{{val.usCpfdBalance}}</div>
+								<div class="order-time">{{val.usCpfdCreateTime}}</div>
 							</div>
 						</div>
 					</div>
@@ -71,23 +43,100 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
 					navboo:false,
+					mydata:[],
+					pageNum:0,
+					pages:''
 				},
 				methods:{
+					myscroll:function(){
+						var that = this
+						if(Math.abs($('.main-inner').offset().top) + $('.main').height() + 200 >= $('.main-inner').height()) {
+							if(that.pages>that.pageNum){
+								function plusReady() {
+									// 弹出系统等待对话框
+									var w = plus.nativeUI.showWaiting("等待中...");
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+								that.myajax()
+							}
+							
+						}
+					},
 					opennew:function(type){
 						if(type=='q'){
 							window.location.href='./havetype.html'
 						}else{
 							
 						}
+					},
+					myajax:function(){
+						var that=this
+						that.pageNum++
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/queryUsCityPartnerTransaction",
+							dataType: 'json',
+							data: {
+								usCityPartnerId:localStorage.getItem('usCityPartnerId'),
+								pageNum:that.pageNum
+							},
+							success: function(res) {
+								console.log(res)
+								that.pages=res.data.pages
+								that.mydata=res.data.list
+								function plusReady() {
+									// 弹出系统等待对话框
+									plus.nativeUI.closeWaiting()
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
+				},
+				filters:{
+					mystate:function(value){
+						switch (value){
+							case 1:
+							return '充值'
+								break;
+							case 2:
+							return '提现'
+								break;
+							case 3:
+							return '消费'
+								break;								
+						}
+					},
+					state:function(value){
+						switch (value){
+							case 1:
+							return '交易成功'
+								break;
+							case 2:
+							return '申请中'
+								break;
+							case 3:
+							return '交易失败'
+								break;								
+						}
+					}
 				}
 			})
 		</script>

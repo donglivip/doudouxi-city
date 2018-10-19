@@ -26,48 +26,49 @@
 			<div class="main">
 				<div class="help-item">
 					<div>订单号</div>
-					<div>D5323246</div>
+					<div>{{pages.pbOrCode}}</div>
 				</div>
 				<div class="help-item">
 					<div>投诉日期</div>
-					<div>2018年7月19日</div>
+					<div>{{pages.pbOrRetentionTime}}</div>
 				</div>
-				<div class="help-item detailtop">
+				<div class="help-item">
+					<div>被投诉合伙人</div>
+					<div>{{pages.usCpName}}</div>
+				</div>
+				<!--<div class="help-item detailtop">
 					<div>干洗店</div>
-					<div>海洋干洗店</div>
+					<div>{{pages.}}</div>
 				</div>
 				<div class="help-item">
 					<div>取送员</div>
 					<div>李俊芮</div>
-				</div>
+				</div>-->
 				<div class="help-item detailtop">
 					<div>投诉内容</div>
 					<div></div>
 				</div>
 				<div class="help-item inner" style="height: auto;">
-					<textarea placeholder="请输入投诉内容">
-						
-					</textarea>
+					<textarea placeholder="请输入投诉内容" readonly="readonly" :value="pages.pbOrProblemDescribe"></textarea>
+					
 				</div>
+				<span style="border: 1px solid #096148;border-radius: .2rem;height: .4rem;padding: 0 .2rem;color: #096148;margin: .2rem;display: inline-block;line-height: .4rem;">{{pages.pbOcContent}}</span>
+				<img :src="pages.pbOrComplainImg" style="width: 1.5rem;height: 1.5rem;display: block;margin-left: .2rem;"/>
 			</div>
 			<div class="bottom">
-				<div class="nav-left complaintb">
-					联系干洗店
-				</div>
-				<div class="nav-left complaintb" style="margin-right: 1rem;">
-					联系取送员
-				</div>
-				<div class="nav-right">
-					联系用户
-				</div>
+				<a class="nav-right" :href="'tel'+pages.usCpPhone" style="flex: 1;">
+					联系合伙人
+				</a>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					more:false
+					more:false,
+					pages:[]
 				},
 				methods:{
 					moreboo:function(){
@@ -75,10 +76,25 @@
 					},
 					opennew:function(id,target){
 						window.location.href='./'+target+'.html'
+					},
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/qandUsCommunityPojo",
+							dataType: 'json',
+							data: {
+								pbOrderId: localStorage.getItem('pbOrderId')
+							},
+							success: function(res) {
+								console.log(res)
+								that.pages=res.data
+							}
+						})
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
 				}
 			})
 		</script>

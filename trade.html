@@ -24,26 +24,32 @@
 			</div>
 			<!--中间主体-->
 			<div class="main big-main sharedetail">
-				<div class="sharedetail-top">
+				<div class="sharedetail-top" v-if="mydata.length!=0">
 					<div class="sharedetail-item">
-						<p></p>
+						<p style="visibility: hidden;">ss</p>
 						<p>流水</p>
 						<p class="yellow">收益</p>
 					</div>
 					<div class="sharedetail-item">
 						<p>今日</p>
-						<p>￥300</p>
-						<p>￥300</p>
+						<p v-if="mydata.mapDay!=null">￥{{mydata.mapDay.pbOrCountPrice}}</p>
+						<p v-if="mydata.mapDay!=null">￥{{mydata.mapDay.usCpfdPrice}}</p>
+						<p v-if="mydata.mapDay==null">￥0</p>
+						<p v-if="mydata.mapDay==null">￥0</p>
 					</div>
 					<div class="sharedetail-item">
 						<p>当月</p>
-						<p>￥300</p>
-						<p>￥300</p>
+						<p v-if="mydata.mapMonth!=null">￥{{mydata.mapMonth.pbOrCountPrice}}</p>
+						<p v-if="mydata.mapMonth!=null">￥{{mydata.mapMonth.usCpfdPrice}}</p>
+						<p v-if="mydata.mapMonth==null">￥0</p>
+						<p v-if="mydata.mapMonth==null">￥0</p>
 					</div>
 					<div class="sharedetail-item">
 						<p>当季</p>
-						<p>￥200</p>
-						<p>￥300</p>
+						<p v-if="mydata.mapQuarter!=null">￥{{mydata.mapQuarter.pbOrCountPrice}}</p>
+						<p v-if="mydata.mapQuarter!=null">￥{{mydata.mapQuarter.usCpfdPrice}}</p>
+						<p v-if="mydata.mapQuarter==null">￥0</p>
+						<p v-if="mydata.mapQuarter==null">￥0</p>
 					</div>
 				</div>
 				<div class="order-main">
@@ -61,51 +67,51 @@
 							<div class="radius"></div>
 						</div>
 					</div>
-					<div class="order-box" @click="opennew('tradedetail')">
+					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata01" v-if="myindex==0">
 						<div class="order-right">
 							<div class="order-bottom">
-								<div class="order-price">郑淳嫔</div>
-								<div class="order-time">2018-05-25</div>
+								<div class="order-price">{{val.commName}}</div>
+								<div class="order-time">{{val.cTime}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">流水</div>
-								<div class="order-time">￥1200</div>
+								<div class="order-time">￥{{val.pbOrCountPrice}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">收益</div>
-								<div class="order-time yellow">￥30</div>
+								<div class="order-time yellow">￥{{val.usCpfdPrice}}</div>
 							</div>
 						</div>
 					</div>
-					<div class="order-box" @click="opennew('tradedetail')">
+					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata02" v-if="myindex==1">
 						<div class="order-right">
 							<div class="order-bottom">
-								<div class="order-price">郑淳嫔</div>
-								<div class="order-time">2018-05-25</div>
+								<div class="order-price">{{val.commName}}</div>
+								<div class="order-time">{{val.cTime}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">流水</div>
-								<div class="order-time">￥1200</div>
+								<div class="order-time">￥{{val.pbOrCountPrice}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">收益</div>
-								<div class="order-time yellow">￥30</div>
+								<div class="order-time yellow">￥{{val.usCpfdPrice}}</div>
 							</div>
 						</div>
 					</div>
-					<div class="order-box" @click="opennew('tradedetail')">
+					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata03" v-if="myindex==2">
 						<div class="order-right">
 							<div class="order-bottom">
-								<div class="order-price">郑淳嫔</div>
-								<div class="order-time">2018-05-25</div>
+								<div class="order-price">{{val.commName}}</div>
+								<div class="order-time">{{val.cTime | mystate}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">流水</div>
-								<div class="order-time">￥1200</div>
+								<div class="order-time">￥{{val.pbOrCountPrice}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">收益</div>
-								<div class="order-time yellow">￥30</div>
+								<div class="order-time yellow">￥{{val.usCpfdPrice}}</div>
 							</div>
 						</div>
 					</div>
@@ -113,25 +119,98 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					myindex:0
+					myindex:0,
+					pageNum:0,
+					pages:0,
+					mydata:[],
+					mydata01:[],
+					mydata02:[],
+					mydata03:[]
 				},
 				methods:{
 					indexchange:function(index){
 						this.myindex=index
 					},
-					opennew:function(target,id){
+					opennew:function(target,id,name){
+						localStorage.setItem('usCommunityname',name)
+						localStorage.setItem('usCommunityPartnerId',id)
 						mui.openWindow({
 							url:'./'+target+'.html',
 							id:target
 						})
+					},
+					myajax:function(){
+						var that=this
+						that.pageNum++
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/selectCityCommTransactionQua",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								that.mydata03=res.data
+							}
+						});
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/selectCityCommTransactionMon",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								that.mydata02=res.data
+							}
+						});
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/selectCityCommTransactionDay",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								that.mydata01=res.data
+							}
+						});
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/selectCityTransactionStatistics",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								console.log(res)
+								that.mydata=res.data
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
+				},
+				filters:{
+					mystate:function(value){
+						var data=new Date()
+						if(value>=0&&value<=3){
+							return data.getFullYear()+'年1月-3月'
+						}else if(value>=4&&value<=6){
+							return data.getFullYear()+'年4月-6月'
+						}else if(value>=7&&value<=9){
+							return data.getFullYear()+'年7月-9月'
+						}else if(value>=10&&value<=12){
+							console.log(123)
+							return data.getFullYear()+'年10月-12月'
+						}
+					}
 				}
 			})
 		</script>

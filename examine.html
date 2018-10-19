@@ -45,59 +45,56 @@
 									</div>
 								</div>
 								<div class="order-bottom">
-									<div class="order-price">低级物料包x20</div>
-									<div class="order-time">618物料包x20</div>
-									<div class="order-price">中机物料包x20</div>
-									<div class="order-time">1111物料包x20</div>
+									<div class="order-price" v-for="val in navdata[0]">{{val.pName}} x{{val.pNum}}</div>
 								</div>
 							</div>
 						</div>
-						<div class="order-box" v-if="myindex==0">
+						<div class="order-box" v-if="myindex==0" v-for="val in navdata[1]" @click="opendetail(val.queryActivityById)">
 							<div class="order-right">
 								<div class="order-bottom">
 									<div class="order-price">申请人</div>
-									<div class="order-time">李金宣</div>
+									<div class="order-time">{{val.usCpName}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price">申请物料包</div>
-									<div class="order-time">高级物料包</div>
+									<div class="order-time">{{val.pbMpName}}</div>
 								</div>
 								<div class="order-bottom bf4">
 									<div class="order-price">活动开始时间</div>
-									<div class="order-time">2018年7月20日</div>
+									<div class="order-time">{{val.pbAtActionTime}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price"></div>
 									<div class="order-time setting">
-										<a class="btn01" href="javascript:void(0)">拒绝</a>
-										<a class="btn02" href="javascript:void(0)">通过</a>
+										<a class="btn01" href="javascript:void(0)" @click.stop="setting(val.pbActivityTreasulrId,3,val.pbMaterialPackageId)">拒绝</a>
+										<a class="btn02" href="javascript:void(0)" @click.stop="setting(val.pbActivityTreasulrId,1,val.pbMaterialPackageId)">通过</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="order-box" v-if="myindex==1">
+						<div class="order-box" v-if="myindex==1" v-for="val in navdata01">
 							<div class="order-right">
 								<div class="order-bottom">
 									<div class="order-price">申请人</div>
-									<div class="order-time">李金宣</div>
+									<div class="order-time">{{val.shopName}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price">店铺名称</div>
-									<div class="order-time">西西洗衣店</div>
+									<div class="order-time">{{val.usStShopName}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price">店铺地址</div>
-									<div class="order-time">徐州市铜山区春旺小区</div>
+									<div class="order-time">{{val.usStAddress}}</div>
 								</div>
 								<div class="order-bottom bf4">
 									<div class="order-price">申请时间</div>
-									<div class="order-time">2018年6月12日</div>
+									<div class="order-time">{{val.usStCreateTime}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price"></div>
 									<div class="order-time setting">
-										<a class="btn01" href="javascript:void(0)">拒绝</a>
-										<a class="btn02" href="javascript:void(0)">通过</a>
+										<a class="btn01" href="javascript:void(0)" @click.stop="setting02(val.usStoreId,3)">拒绝</a>
+										<a class="btn02" href="javascript:void(0)" @click.stop="setting02(val.usStoreId,1)">通过</a>
 									</div>
 								</div>
 							</div>
@@ -107,13 +104,78 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					myindex:0
+					myindex:0,
+					navdata:[],
+					navdata01:[]
 				},
 				methods:{
+					opendetail:function(id){
+						localStorage.setItem('pbActivityTreasulrId',id)
+						this.opennew('examinedetail02')
+					},
+					setting02:function(id,type){
+						var that=this
+						var ajaxjson={
+								usStoreId:id,
+								usStExamineStatus:type
+							}
+						console.log(ajaxjson)
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/updateStoreStatus",
+							dataType:'json',
+							data:ajaxjson,
+							success:function(res){
+								console.log(res)
+								if(res.status==200){
+									function plusReady(){
+										// 弹出系统等待对话框
+										plus.nativeUI.toast('操作完成')
+										that.myajax()
+									}
+									if(window.plus){
+										plusReady();
+									}else{
+										document.addEventListener("plusready",plusReady,false);
+									}
+								}
+							}
+						});
+					},
+					setting:function(id,type,pbMaterialPackageId){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/updateActivity",
+							dataType:'json',
+							data:{
+								pbActivityTreasulrId:id,
+								pbAtExamineStatus:type,
+								usCityPartnerId:localStorage.getItem('usCityPartnerId'),
+								pbMaterialPackageId:pbMaterialPackageId	
+							},
+							success:function(res){
+								console.log(res)
+								if(res.status==200){
+									function plusReady(){
+										// 弹出系统等待对话框
+										plus.nativeUI.toast('操作完成')
+										that.myajax()
+									}
+									if(window.plus){
+										plusReady();
+									}else{
+										document.addEventListener("plusready",plusReady,false);
+									}
+								}
+							}
+						});
+					},
 					indexchange:function(index){
 						this.myindex=index
 					},
@@ -122,10 +184,35 @@
 							url:'./'+target+'.html',
 							id:target
 						})
+					},
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryExaminePackage",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								that.navdata=res.data
+							}
+						});
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryUsStoreListByStatus",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								that.navdata01=res.data
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
 				}
 			})
 		</script>

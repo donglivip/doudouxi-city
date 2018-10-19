@@ -23,39 +23,35 @@
 				</div>
 			</div>
 			<!--中间主体-->
-			<div class="main big-main">
+			<div class="main big-main" v-if="mydata!=''">
 				<div class="center-top">
-					<img src="img/avatar.jpg" class="avatar"/>
+					<img :src="mydata.usCpHeadImg" class="avatar"/>
 					<div class="name-box">
 						<div class="name">
-							雨雪霏霏
+							{{mydata.usCpName}}
 							<img src="img/woman.png"/>
 						</div>
 						<div class="state-box">
-							<div class="phone">联系方式：135465255566</div>
+							<div class="phone">联系方式：{{mydata.usCpPhone}}</div>
 						</div>
 					</div>
 				</div>
 				<a class="user-tab" href="javascript:void(0)">
 					<div class="tab-text">他的评价</div>
 					<div class="tab-text">
-						<img src="img/Group 5@2x.png"/>
-						<img src="img/Group 5@2x.png"/>
-						<img src="img/Group 5@2x.png"/>
-						<img src="img/Group 5@2x.png"/>
-						<img src="img/Group 6@2x.png"/>
+						<img src="img/Group 5@2x.png" v-for="item in mydata.evaluate"/>
 					</div>
 				</a>
 				<a class="user-tab" href="javascript:void(0)">
 					<div class="tab-text">他的投诉</div>
 					<div class="tab-text">
-						36次
+						{{mydata.complaint}}次
 					</div>
 				</a>
 				<a class="user-tab" href="javascript:void(0)">
 					<div class="tab-text">他的活动</div>
 					<div class="tab-text">
-						36次
+						{{mydata.activity}}次
 					</div>
 				</a>
 				<div class="user-tab top" @click="opennew('device')">
@@ -73,11 +69,12 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-
+					mydata:''
 				},
 				methods:{
 					opennew:function(target,id){
@@ -85,10 +82,26 @@
 							url:'./'+target+'.html',
 							id:target
 						})
+					},
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryUsCommunityPartnerPojoDetails",
+							dataType:'json',
+							data:{
+								usCommunityPartnerId:localStorage.getItem('usCommunityPartnerId')
+							},
+							success:function(res){
+								console.log(res)
+								that.mydata=res.data
+								that.mydata.evaluate=Math.round(that.mydata.evaluate)
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
 				}
 			})
 		</script>

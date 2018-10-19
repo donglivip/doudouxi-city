@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,18 +9,19 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 	</head>
+
 	<body>
 		<div class="wrapper order trade">
 			<!--头部-->
 			<div class="header">
 				<div class="head-tab mui-action-back">
-					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
 				</div>
 				<div class="head-main">
 					推荐收入
 				</div>
-				<div class="head-tab" @click="opennew('search')">
-					<img src="img/search.png"/>
+				<div class="head-tab">
+					<!--<img src="img/search.png"/>-->
 				</div>
 			</div>
 			<!--中间主体-->
@@ -27,19 +29,19 @@
 				<div class="sharedetail-top">
 					<div class="sharedetail-item">
 						<p>总推荐额</p>
-						<p>￥800</p>
+						<p>￥{{mydata.sumRecommend}}</p>
 					</div>
 					<div class="sharedetail-item">
 						<p>平均推荐额</p>
-						<p>￥300</p>
+						<p>￥{{mydata.countRecommend}}</p>
 					</div>
 					<div class="sharedetail-item">
 						<p>最高推荐额</p>
-						<p>￥300</p>
+						<p>￥{{mydata.maxRecommend}}</p>
 					</div>
 					<div class="sharedetail-item">
 						<p>总人数</p>
-						<p>45</p>
+						<p>{{mydata.sumRecommend}}</p>
 					</div>
 				</div>
 				<div class="order-main">
@@ -57,138 +59,144 @@
 							<div class="radius"></div>
 						</div>
 					</div>
-					<div class="trade-main">
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">总额</div>
-									<div class="order-time">￥1200</div>
+					<div class="trade-main" @scroll="myscroll">
+						<div class="main-inner">
+							<div class="order-box" v-for="val in mydata01">
+								<div class="order-right">
+									<div class="order-bottom">
+										<div class="order-price">{{val.usCppCreateName}}</div>
+										<div class="order-time">￥{{val.usCppPrice}}</div>
+									</div>
+									<div class="order-bottom">
+										<div class="order-price">{{val.usCppCreateTimeStringDay}}</div>
+										<div class="order-time"></div>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">郑淳嫔</div>
-									<div class="order-time">￥1200</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">2018年7月18日</div>
-									<div class="order-time"></div>
-								</div>
-							</div>
-						</div>
-						
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var myvue=new Vue({
-				el:'.wrapper',
-				data:{
-					myindex:0
+			var myvue = new Vue({
+				el: '.wrapper',
+				data: {
+					myindex: 0,
+					mydata: [],
+					mydata01: [],
+					pages: 0,
+					pageNum: 0
 				},
-				methods:{
-					indexchange:function(index){
-						this.myindex=index
+				methods: {
+					myscroll: function() {
+						var that = this
+						if(Math.abs($('.main-inner').offset().top) + $('.main').height() + 200 >= $('.main-inner').height()) {
+							if(that.pages > that.pageNum) {
+								function plusReady() {
+									// 弹出系统等待对话框
+									var w = plus.nativeUI.showWaiting("等待中...");
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+								that.myajax()
+							}
+
+						}
 					},
-					opennew:function(target,id){
+					indexchange: function(index) {
+						this.pageNum = 0
+						this.myindex = index
+						this.myajax()
+					},
+					opennew: function(target, id) {
 						mui.openWindow({
-							url:'./'+target+'.html',
-							id:target
+							url: './' + target + '.html',
+							id: target
 						})
+					},
+					myajax: function() {
+						var that = this
+						that.mydata01=[]
+						//						顶部统计
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/selectCityRecommendTransaction",
+							dataType: 'json',
+							data: {
+								usCityPartnerId: localStorage.getItem('usCityPartnerId')
+							},
+							success: function(res) {
+								that.mydata = res.data
+							}
+						});
+						//						推荐明细(天)
+						that.pageNum++
+						if(that.myindex==0){
+							$.ajax({
+								type: "post",
+								url: localStorage.getItem('myurl') + "/usCityPartner/selectUsCityPartnerProfitDay",
+								dataType: 'json',
+								data: {
+									usCityPartnerId: localStorage.getItem('usCityPartnerId'),
+									pageNum: that.pageNum
+								},
+								success: function(res) {
+									console.log(res)
+									that.pages = res.data.pages
+									for(var i = 0; i < res.data.list.length; i++) {
+										that.mydata01.push(res.data.list[i])
+									}
+								}
+							});
+						}else if(that.myindex==1){
+							$.ajax({
+								type: "post",
+								url: localStorage.getItem('myurl') + "/usCityPartner/selectUsCityPartnerProfitMonth",
+								dataType: 'json',
+								data: {
+									usCityPartnerId: localStorage.getItem('usCityPartnerId'),
+									pageNum: that.pageNum
+								},
+								success: function(res) {
+									console.log(res)
+									that.pages = res.data.pages
+									for(var i = 0; i < res.data.list.length; i++) {
+										that.mydata01.push(res.data.list[i])
+									}
+								}
+							});
+						}else if(that.myindex==2){
+							$.ajax({
+								type: "post",
+								url: localStorage.getItem('myurl') + "/usCityPartner/selectUsCityPartnerProfitQuarter",
+								dataType: 'json',
+								data: {
+									usCityPartnerId: localStorage.getItem('usCityPartnerId'),
+									pageNum: that.pageNum
+								},
+								success: function(res) {
+									console.log(res)
+									that.pages = res.data.pages
+									for(var i = 0; i < res.data.list.length; i++) {
+										that.mydata01.push(res.data.list[i])
+									}
+								}
+							});
+						}
+							
 					}
 				},
-				mounted:function(){
-					
+				mounted: function() {
+					this.myajax()
 				}
 			})
 		</script>
 	</body>
+
 </html>

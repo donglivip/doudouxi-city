@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,289 +9,92 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 	</head>
+	<style type="text/css">
+		.order-price{width: 3rem!important;}
+	</style>
 	<body>
 		<div class="wrapper order trade">
 			<!--头部-->
 			<div class="header">
 				<div class="head-tab mui-action-back">
-					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
 				</div>
 				<div class="head-main">
 					警报系统
 				</div>
 				<div class="head-tab">
-					
+
 				</div>
 			</div>
 			<!--中间主体-->
 			<div class="main big-main sharedetail">
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
+				<div class="order-box alert01" v-for='val in myindex' v-if="val.deviceCaseReason!=0">
+					<div class="order-right">
+						<div class="order-bottom">
+							<div class="order-price">设备名称</div>
+							<div class="order-time">{{val.pbPdName}}</div>
 						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
+						<div class="order-bottom">
+							<div class="order-price">设备ID</div>
+							<div class="order-time">{{val.usCommunityPartnerId}}</div>
 						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
+						<div class="order-bottom">
+							<div class="order-price">所属社区合伙人</div>
+							<div class="order-time">{{val.usCpName}}</div>
 						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
+						<div class="order-bottom" style="height: .8rem;">
+							<div class="order-price">所在位置</div>
+							<div class="order-time">{{val.pbPdAddress}}</div>
 						</div>
-					</div>
-					
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
-						</div>
-					</div><div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
-						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
-						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
-						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">设备名称</div>
-								<div class="order-time">郑春平的一号柜</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备ID</div>
-								<div class="order-time">D1454545</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所属社区合伙人</div>
-								<div class="order-time">郑春平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">所在位置</div>
-								<div class="order-time">徐州市铜山区春旺小区西门</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">设备状态</div>
-								<div class="order-time red">21号柜门损坏</div>
-							</div>
+						<div class="order-bottom">
+							<div class="order-price">设备状态</div>
+							<div class="order-time red"><span v-for="item in val.deviceCaseReason">{{item.pbPdrContent}}</span></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var myvue=new Vue({
-				el:'.wrapper',
-				data:{
-					myindex:0
+			var myvue = new Vue({
+				el: '.wrapper',
+				data: {
+					myindex: ''
 				},
-				methods:{
-					indexchange:function(index){
-						this.myindex=index
+				methods: {
+					indexchange: function(index) {
+						this.myindex = index
 					},
-					opennew:function(type){
-						if(type=='q'){
-							window.location.href='./havetype.html'
-						}else{
-							
+					opennew: function(type) {
+						if(type == 'q') {
+							window.location.href = './havetype.html'
+						} else {
+
 						}
+					},
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/community/selectCityPbPartnerDevice  ",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								console.log(res)
+								that.myindex=res.data
+							}
+						});
 					}
 				},
-				mounted:function(){
-					
+				mounted: function() {
+					this.myajax()
 				}
 			})
 		</script>
 	</body>
+
 </html>

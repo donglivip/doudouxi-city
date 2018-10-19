@@ -36,48 +36,48 @@
 						</div>
 					</div>
 					<div class="trade-main">
-						<div class="order-box" v-if="myindex==0">
+						<div class="order-box" v-if="myindex==0" v-for="val in navdata">
 							<div class="order-right">
 								<div class="order-bottom">
 									<div class="order-price">申请人</div>
-									<div class="order-time">李金宣</div>
+									<div class="order-time">{{val.usCpName}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price">申请物料包</div>
-									<div class="order-time">高级物料包</div>
+									<div class="order-time">{{val.pbMpName}}</div>
 								</div>
 								<div class="order-bottom bf4">
 									<div class="order-price">活动开始时间</div>
-									<div class="order-time">2018年7月20日</div>
+									<div class="order-time">{{val.pbAtActionTime}}</div>
 								</div>
 								<div class="order-bottom">
-									<div class="order-price">2018年7月17日</div>
+									<div class="order-price">{{val.pbAtAuditTime}}</div>
 									<div class="order-time setting red">
-										已拒绝
+										{{val.pbAtExamineStatus | state}}
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="order-box" v-if="myindex==1">
+						<div class="order-box" v-if="myindex==1" v-for='val in navdata01'>
 							<div class="order-right">
 								<div class="order-bottom">
 									<div class="order-price">申请人</div>
-									<div class="order-time">李金宣</div>
+									<div class="order-time">{{val.shopName}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price">店铺名称</div>
-									<div class="order-time">西西洗衣店</div>
+									<div class="order-time">{{val.usStShopName}}</div>
 								</div>
 								<div class="order-bottom">
 									<div class="order-price">店铺地址</div>
-									<div class="order-time">徐州市铜山区春旺小区</div>
+									<div class="order-time">{{val.usStAddress}}</div>
 								</div>
 								<div class="order-bottom bf4">
 									<div class="order-price">申请时间</div>
-									<div class="order-time">2018年6月12日</div>
+									<div class="order-time">{{val.usStCreateTimeString}}</div>
 								</div>
 								<div class="order-bottom">
-									<div class="order-price">2018年7月17日</div>
+									<div class="order-price">{{val.usStUpdateTime}}</div>
 									<div class="order-time setting">
 										已通过
 									</div>
@@ -89,11 +89,14 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					myindex:0
+					myindex:0,
+					navdata:'',
+					navdata01:''
 				},
 				methods:{
 					indexchange:function(index){
@@ -105,10 +108,52 @@
 						}else{
 							
 						}
+					},
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryAllActivity",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								console.log(res)
+								that.navdata=res.data
+							}
+						});
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryUsStoreListByAllStatus",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								console.log(res)
+								that.navdata01=res.data
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
+				},
+				filters:{
+					state:function(value){
+						switch (value){
+							case 1:
+							return '审核通过'
+								break;
+							case 2:
+							return '等待审核'
+								break;
+							case 3:
+							return '拒绝审核'
+								break;								
+						}
+					}
 				}
 			})
 		</script>

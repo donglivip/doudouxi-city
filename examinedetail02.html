@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<div class="wrapper order trade">
+			<!--头部-->
+			<div class="header">
+				<div class="head-tab mui-action-back">
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
+				</div>
+				<div class="head-main">
+					审批管理
+				</div>
+				<div class="head-tab" @click="opennew('examinedetail')">
+					审批记录
+				</div>
+			</div>
+			<!--中间主体-->
+			<div class="main big-main complaint">
+				<div class="order-main">
+					<div class="order-box">
+						<div class="order-right">
+							<div class="order-bottom">
+								<div class="order-price">活动编号</div>
+								<div class="order-time">{{navdata.pbActivityTreasulrId}}</div>
+							</div>
+							<div class="order-bottom">
+								<div class="order-price">活动开始日期</div>
+								<div class="order-time">{{navdata.pbAtActionTime}}</div>
+							</div>
+							<div class="order-bottom">
+								<div class="order-price">活动结束日期</div>
+								<div class="order-time">{{navdata.pbAtEndTime}}</div>
+							</div>
+							<div class="order-bottom bf4">
+								<div class="order-price">收货地址</div>
+								<div class="order-time">{{navdata.pbAtAddress}}</div>
+							</div>
+							<div class="order-bottom">
+								<div class="order-price">活动申请时间</div>
+								<div class="order-time">{{navdata.pbAtCreateTime}}</div>
+							</div>
+							<div class="order-bottom">
+								<div class="order-price">物料包名</div>
+								<div class="order-time">{{navdata.pbMpName}}</div>
+							</div>
+							<div class="order-bottom">
+								<div class="order-price">合伙人名</div>
+								<div class="order-time">{{navdata.usCpName}}</div>
+							</div>
+							<div class="order-bottom bf4">
+								<div class="order-price">所选设备</div>
+								<div class="order-time">{{navdata.pbPdName}}</div>
+							</div>
+							<div class="order-bottom">
+								<div class="order-price"></div>
+								<div class="order-time setting">
+									<a class="btn01" href="javascript:void(0)" @click="setting(val.pbActivityTreasulrId,3)">拒绝</a>
+									<a class="btn02" href="javascript:void(0)" @click="setting(val.pbActivityTreasulrId,1)">通过</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var myvue = new Vue({
+				el: '.wrapper',
+				data: {
+					myindex: 0,
+					navdata: []
+				},
+				methods: {
+					opendetail: function(id) {
+						localStorage.setItem('pbActivityTreasulrId', id)
+						this.opennew('')
+					},
+					setting: function(id, type) {
+						var that = this
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/updateActivity",
+							dataType: 'json',
+							data: {
+								pbActivityTreasulrId: id,
+								pbAtExamineStatus: type
+							},
+							success: function(res) {
+								console.log(res)
+								if(res.status == 200) {
+									function plusReady() {
+										// 弹出系统等待对话框
+										plus.nativeUI.toast('操作完成')
+										that.myajax()
+									}
+									if(window.plus) {
+										plusReady();
+									} else {
+										document.addEventListener("plusready", plusReady, false);
+									}
+								}
+							}
+						});
+					},
+					opennew: function(target, id) {
+						mui.openWindow({
+							url: './' + target + '.html',
+							id: target
+						})
+					},
+					myajax: function() {
+						var that = this
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/queryActivityById",
+							dataType: 'json',
+							data: {
+								pbActivityTreasulrId: localStorage.getItem('pbActivityTreasulrId')
+							},
+							success: function(res) {
+								console.log(res)
+								that.navdata = res.data
+							}
+						});
+					}
+				},
+				mounted: function() {
+					this.myajax()
+				}
+			})
+		</script>
+	</body>
+
+</html>

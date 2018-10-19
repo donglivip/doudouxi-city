@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,96 +9,117 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 	</head>
+
 	<body>
 		<div class="wrapper order trade">
 			<!--头部-->
 			<div class="header">
 				<div class="head-tab mui-action-back">
-					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
 				</div>
 				<div class="head-main">
 					他的干洗店
 				</div>
 				<div class="head-tab">
-					
+
 				</div>
 			</div>
 			<!--中间主体-->
-			<div class="main big-main sharedetail">
-					<div class="order-box alert01">
+			<div class="main big-main sharedetail" @scroll="myscroll">
+				<div class="main-inner">
+					<div class="order-box alert01" v-for="val in mydata">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">店铺名称</div>
-								<div class="order-time">东城洗衣店</div>
+								<div class="order-time">{{val.usStShopName}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">店主</div>
-								<div class="order-time">邓紫平</div>
+								<div class="order-time">{{val.usStLegalPerson}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">联系电话</div>
-								<div class="order-time">17845698547</div>
-							</div>
-						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">店铺名称</div>
-								<div class="order-time">东城洗衣店</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">店主</div>
-								<div class="order-time">邓紫平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">联系电话</div>
-								<div class="order-time">17845698547</div>
-							</div>
-						</div>
-					</div>
-					<div class="order-box alert01">
-						<div class="order-right">
-							<div class="order-bottom">
-								<div class="order-price">店铺名称</div>
-								<div class="order-time">东城洗衣店</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">店主</div>
-								<div class="order-time">邓紫平</div>
-							</div>
-							<div class="order-bottom">
-								<div class="order-price">联系电话</div>
-								<div class="order-time">17845698547</div>
+								<div class="order-time">{{val.usStPhone}}</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var myvue=new Vue({
-				el:'.wrapper',
-				data:{
-					myindex:0
+			var myvue = new Vue({
+				el: '.wrapper',
+				data: {
+					pageNum: 0,
+					mydata: [],
+					pages: 0
 				},
-				methods:{
-					indexchange:function(index){
-						this.myindex=index
-					},
-					opennew:function(type){
-						if(type=='q'){
-							window.location.href='./havetype.html'
-						}else{
-							
+				methods: {
+					myscroll: function() {
+						var that = this
+						if(Math.abs($('.main-inner').offset().top) + $('.main').height() + 200 >= $('.main-inner').height()) {
+							if(that.pages > that.pageNum) {
+								function plusReady() {
+									// 弹出系统等待对话框
+									var w = plus.nativeUI.showWaiting("等待中...");
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+								that.myajax()
+							}
+
 						}
+					},
+					indexchange: function(index) {
+						this.myindex = index
+					},
+					opennew: function(type) {
+						if(type == 'q') {
+							window.location.href = './havetype.html'
+						} else {
+
+						}
+					},
+					myajax: function() {
+						var that = this
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/usStoreList",
+							dataType: 'json',
+							data: {
+								usCommunityPartnerId: localStorage.getItem('usCommunityPartnerId')
+							},
+							success: function(res) {
+								console.log(res)
+								that.pages = res.data.pages
+								for(var i = 0; i < res.data.list.length; i++) {
+									that.mydata.push(res.data.list[i])
+								}
+
+								function plusReady() {
+									// 弹出系统等待对话框
+									var w = plus.nativeUI.closeWaiting()
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+							}
+						});
 					}
 				},
-				mounted:function(){
-					
+				mounted: function() {
+					this.myajax()
 				}
 			})
 		</script>
 	</body>
+
 </html>

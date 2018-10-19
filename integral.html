@@ -26,7 +26,7 @@
 			<div class="main big-main">
 				<div class="profit-top">
 					<div class="subtitile">账户余额</div>
-					<div class="price">355.5 <span style="font-size: .2rem;">(元)</span> </div>
+					<div class="price">{{mydata[0].usCpwBalance}}<span style="font-size: .2rem;">(元)</span> </div>
 				</div>
 				<div class="integral-tab" @click="opennew('rname')"> 
 					<div>
@@ -43,11 +43,12 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-
+					mydata:''
 				},
 				methods:{
 					opennew:function(target,id){
@@ -55,10 +56,25 @@
 							url:'./'+target+'.html',
 							id:target
 						})
+					},
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryUsCityWallet",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								that.mydata=res.data
+								console.log(res)
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
 				}
 			})
 		</script>

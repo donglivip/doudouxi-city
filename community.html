@@ -24,101 +24,52 @@
 			</div>
 			<!--中间主体-->
 			<div class="main big-main">
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div>
-				<div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
-					</div>
-				</div><div class="community-box" @click="opennew('communitydetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
+				<div class="main-inner">
+					<div class="community-box" @click="opennew('communitydetail',val.usCommunityPartnerId)" v-for="val in mydata">
+						<img :src="val.usCpHeadImg"/>
+						<div class="community-main">
+							<h2>{{val.usCpName}}</h2>
+							<p>联系方式：{{val.usCpPhone}}</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-
+					mydata:[]
 				},
 				methods:{
 					opennew:function(target,id){
+						localStorage.setItem('usCommunityPartnerId',id)
 						mui.openWindow({
 							url:'./'+target+'.html',
 							id:target
 						})
+					},
+					myajax:function(){
+						var that=this
+						that.pageNum++
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryUsCommunityPartnerPojo",
+							dataType:'json',
+							data:{
+								usCityPartnerId:localStorage.getItem('usCityPartnerId')
+							},
+							success:function(res){
+								console.log(res)
+								that.mydata=res.data
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
 				}
 			})
 		</script>

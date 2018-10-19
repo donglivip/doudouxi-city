@@ -23,33 +23,77 @@
 				</div>
 			</div>
 			<!--中间主体-->
-			<div class="main big-main">
-				<div class="community-box" @click="opennew('peopledetail')">
-					<img src="img/avatar.jpg"/>
-					<div class="community-main">
-						<h2>郑春平</h2>
-						<p>联系方式：17864958756</p>
+			<div class="main big-main" @scroll="myscroll">
+				<div class="main-inner">
+					<div class="community-box" @click="opennew('peopledetail',val.usStaffId)" v-for="val in mydata">
+						<img :src="val.usStHeadImg"/>
+						<div class="community-main">
+							<h2>{{val.usStName}}</h2>
+							<p>联系方式：{{val.usStPhone}}</p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-
+					pageNum:0,
+					mydata:[],
+					pages:0
 				},
 				methods:{
+					myscroll: function() {
+						var that = this
+						if(Math.abs($('.main-inner').offset().top) + $('.main').height() + 200 >= $('.main-inner').height()) {
+							if(that.pages>that.pageNum){
+								function plusReady() {
+									// 弹出系统等待对话框
+									var w = plus.nativeUI.showWaiting("等待中...");
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+								that.myajax()
+							}
+							
+						}
+					},
 					opennew:function(target,id){
+						localStorage.setItem('usStaffId',id)
 						mui.openWindow({
 							url:'./'+target+'.html',
 							id:target
 						})
+					},
+					myajax:function(){
+						var that=this
+						that.pageNum++
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/usStaffList",
+							dataType:'json',
+							data:{
+								usCommunityPartnerId:localStorage.getItem('usCommunityPartnerId'),
+								pageNum:that.pageNum
+							},
+							success:function(res){
+								console.log(res)
+								that.pages=res.data.pages
+								for(var i = 0; i < res.data.list.length; i++) {
+									that.mydata.push(res.data.list[0])
+								}
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax() 
 				}
 			})
 		</script>

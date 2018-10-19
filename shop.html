@@ -7,6 +7,9 @@
 		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
+		<style type="text/css">
+			.nav .shop .img-box img{width: 45%;}
+		</style>
 	</head>
 	<body>
 		<div class="wrapper nav">
@@ -25,64 +28,108 @@
 			<!--中间主体-->
 			<div class="main">
 				<div class="shop-box">
-					<div class="shop">
+					<div class="shop" v-for="(val,index) in navdata" @click="opendetail(val.pbMaterialPackageId)">
 						<div class="img-box">
-							<img src="img/shop.jpg"/>
+							<img src="img/liwu.png"/>
 						</div>
 						<div class="price-box">
-							<div class="name">高级物料包</div>
-							<div class="price">￥16</div>
+							<div class="name">{{val.pbMpName}}</div>
+							<div class="price">￥{{val.pbMpPrice}}</div>
 						</div>
-						<div class="subtitile">库存：2002</div>
+						<div class="subtitile">库存：{{val.pbMpStock}}</div>
 						<div class="add-box">
-							<img src="img/Close-2 Copy 9@2x.png"/>
-							<div class="num">1</div>
-							<img src="img/Close-2 Copy 6@2x.png"/>
+							<img src="img/Close-2 Copy 9@2x.png"  @click.stop="addnum('j',index)" />
+							<div class="num">{{val.packageNum}}</div>
+							<img src="img/Close-2 Copy 6@2x.png" @click.stop="addnum('z',index)"/>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="bottom">
 				<div class="nav-left" @click="alertshow">
-					<div class="bprice">合计:￥60</div>
+					<div class="bprice">合计:￥{{allnum}}</div>
 				</div>
-				<div class="nav-right" @click="pay">
+				<div class="nav-right" @click="pay()">
 					去结算
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					navtext:[
-						'上衣',
-						'裤裙',
-						'鞋类',
-						'家纺',
-						'包包'
-					],
-					navindex:0,
-					subindex:0,
-					alertboo:false
+					alertboo:false,
+					navdata:'',
+					cartdata:[],
+					allnum:0
 				},
 				methods:{
-					tab:function(index){
-						this.navindex=index
+					pay:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/buyActivityPackage",
+							dataType:'json',
+							success:function(res){
+								console.log(res)
+								for (var i=0;i<res.data.length;i++) {
+									res.data[i].packageNum=0
+								}
+								that.navdata=res.data
+							}
+						});
+					},
+					addnum: function(type, index) {
+						var that = this
+						if(type == 'j') {
+							if(this.navdata[index].packageNum > 0) {
+								this.navdata[index].packageNum--
+							}
+						} else {
+							this.navdata[index].packageNum++
+						}
+						that.allnum = 0
+						that.cartdata=[]
+						for(var i = 0; i < that.navdata.length; i++) {
+							if(that.navdata[i].packageNum > 0) {
+								that.cartdata.push(that.navdata[i])
+								that.allnum += that.navdata[i].packageNum * that.navdata[i].pbMpPrice
+							}
+						}
+					},
+					opendetail:function(id){
+						localStorage.setItem('pbMaterialPackageId',id)
+						this.opennew('shopdetail')
 					},
 					alertshow:function(){
 						this.alertboo=!this.alertboo
 					},
-					opennew:function(target){
-						window.location.href='./shop-detail.html'
+					opennew:function(target,id){
+						mui.openWindow({
+							url:'./'+target+'.html',
+							id:target
+						})
 					},
-					pay:function(){
-						window.location.href='./pay.html'
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/queryPbMaterialPackage",
+							dataType:'json',
+							success:function(res){
+								console.log(res)
+								for (var i=0;i<res.data.length;i++) {
+									res.data[i].packageNum=0
+								}
+								that.navdata=res.data
+							}
+						});
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
 				}
 			})
 		</script>

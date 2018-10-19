@@ -27,50 +27,109 @@
 				<div class="main-inner">
 					<div class="titile">手机快捷登录 </div>
 					<div class="input-box">
-						<input type="number" placeholder="请输入手机号"/>
+						<input type="number" placeholder="请输入手机号" v-model="usCpPhone"/>
 						<div class="addcode" @click="addcode">{{num}}</div>
 					</div>
 					<div class="input-box">
-						<input type="number" placeholder="请输入短信验证码"/>
+						<input type="number" placeholder="请输入短信验证码" v-model="code"/>
 					</div>
 					<div class="login-type">
 						<a href="mlogin.html">密码账户登录</a>
 					</div>
-					<div class="login" @click="opennew('index','')">登录</div>
+					<div class="login" @click="login()">登录</div>
 					<div class="login-type">
 						<div @click="opennew('Agreement','')">登陆即视为同意 	<strong>《豆豆洗注册协议》</strong></div>
 					</div>
-					<div class="three">
+					<!--<div class="three">
 						<div class="thre-title">第三方登录 </div>
 						<div class="three-box">
 							<a href=""><img src="img/QQ@2x.png"/></a>
 							<a href=""><img src="img/wxin.png"/></a>
 						</div>
+					</div>-->
+				</div>
+				<div class="alert" v-if="alertboo" @click="alertshow('')">
+					<div class="alert-inner">
+						<div class="alert-top">豆豆洗</div>
+						<div class="text alert-text">{{alerttext}}</div>
+						<div class="button">确定</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					num:'获取验证码'
+					num:'获取验证码',
+					usCpPhone:'',
+					code:'',
+					mycode:'',
+					alertboo :false
 				},
 				methods:{
+					alertshow:function(text){
+						this.alerttext=text
+						this.alertboo=!this.alertboo
+					},
+					login:function(){
+						var that=this
+//						15805204773//  123456//
+						if(that.usCpPassword==''||that.code==''||that.code!=that.mycode){
+							that.alertshow('账号或验证码不正确！')
+							return false;
+						}
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/checkUsCityPhonePassword",
+							dataType:'json',
+							data:{
+								usCpPhone:that.usCpPhone
+							},
+							success:function(res){
+								console.log(res)
+								if(res.status==200){
+									localStorage.setItem('usCpNickName',res.data.usCpNickName)
+									localStorage.setItem('usCpAddress',res.data.usCpAddress)
+									localStorage.setItem('usCpAliPayCode',res.data.usCpAliPayCode)
+									localStorage.setItem('usCityPartnerId',res.data.usCityPartnerId)
+									localStorage.setItem('usCpPhone',res.data.usCpPhone)
+									localStorage.setItem('usCpCardImg',res.data.usCpCardImg)
+									that.opennew('index')
+								}else{
+									that.alertshow(res.msg)
+								}
+							}
+						});
+					},
 					addcode:function(){
 						var set
 							that=this;
 						if(this.num=='获取验证码'){
-							this.num=60
-							set=setInterval(function(){
-								if(that.num!=1){
-									that.num--
-								}else{
-									clearInterval(set)
-									that.num='获取验证码'
+							var that=this
+							$.ajax({
+								type:"post",
+								url:localStorage.getItem('myurl')+"/usCityPartner/usCityGetShortCode",
+								dataType:'json',
+								data:{
+									usCpPhone:that.usCpPhone
+								},
+								success:function(res){
+									that.mycode=res.data
+									that.num=60
+									set=setInterval(function(){
+										if(that.num!=1){
+											that.num--
+										}else{
+											clearInterval(set)
+											that.num='获取验证码'
+										}
+									},1000)
 								}
-							},1000)
+							});
+							
 						}
 					},
 					opennew:function(target,id){

@@ -26,12 +26,12 @@
 			<div class="main">
 				<div class="center-top">
 					<img :src="avatar" class="backimg"/>
-					<img :src="avatar" class="avatar" @click="imgclick"/>
+					<img :src="usCpCardImg" class="avatar"/>
 					<div class="name-box">
-						<div class="name">雨雪霏霏</div>
+						<div class="name">{{usCpNickName}}</div>
 						<div class="state-box">
-							<div class="phone">手机号：135465255566</div>
-							<div class="state">南京</div>
+							<div class="phone">手机号：{{usCpPhone}}</div>
+							<!--<div class="state">南京</div>-->
 						</div>
 					</div>
 				</div>
@@ -84,7 +84,10 @@
 				el:'.wrapper',
 				data:{
 					avatar:'img/avatar.jpg',
-					files:[]
+					files:[],
+					usCpNickName:localStorage.getItem('usCpNickName'),
+					usCpCardImg:localStorage.getItem('usCpCardImg'),
+					usCpPhone:localStorage.getItem('usCpPhone')
 				},
 				methods:{
 					opennew:function(target,id){

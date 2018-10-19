@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,18 +9,19 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 	</head>
+
 	<body>
 		<div class="wrapper order trade">
 			<!--头部-->
 			<div class="header">
 				<div class="head-tab mui-action-back">
-					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
 				</div>
 				<div class="head-main">
 					投诉管理
 				</div>
 				<div class="head-tab">
-					
+
 				</div>
 			</div>
 			<!--中间主体-->
@@ -27,80 +29,63 @@
 				<div class="order-main">
 					<div class="trade-top">
 						<div class="trade-item" :class="myindex==0?'active':''" @click="indexchange(0)">
-							<div class="text">未处理<br />12</div>
+							<div class="text">未处理<br /></div>
 							<div class="radius"></div>
 						</div>
 						<div class="trade-item" :class="myindex==1?'active':''" @click="indexchange(1)">
-							<div class="text">已处理<br />14</div>
+							<div class="text">已处理<br /></div>
 							<div class="radius"></div>
 						</div>
 					</div>
-					<div class="trade-main">
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">订单号</div>
-									<div class="order-time">D5323246</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">投诉日期</div>
-									<div class="order-time">2018年7月19日</div>
-								</div>
-								<div class="order-bottom bf4">
-									<div class="order-price">被投诉合伙人</div>
-									<div class="order-time">郑万新</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price"></div>
-									<div class="order-time setting">
-										<a class="btn01" href="tel:155566">联系合伙人</a>
-										<a class="btn02" href="javascript:void(0)" @click="opennew('complaintdetail')">查看详情</a>
+					<div class="trade-main" @scroll="myscroll" style="height: calc(100% - 1.5rem);" v-if="myindex==0">
+						<div class="main-inner">
+							<div class="order-box" v-for="val in navdata">
+								<div class="order-right">
+									<div class="order-bottom">
+										<div class="order-price">订单号</div>
+										<div class="order-time">{{val.pbOrderId}}</div>
+									</div>
+									<div class="order-bottom">
+										<div class="order-price">投诉日期</div>
+										<div class="order-time">{{val.pbOrRetentionTime}}</div>
+									</div>
+									<div class="order-bottom bf4">
+										<div class="order-price">被投诉合伙人</div>
+										<div class="order-time">{{val.usCpName}}</div>
+									</div>
+									<div class="order-bottom">
+										<div class="order-price"></div>
+										<div class="order-time setting">
+											<a class="btn01" :href="'tel:'+val.usCpPhone">联系合伙人</a>
+											<a class="btn02" href="javascript:void(0)" @click="opennew('complaintdetail',val.pbOrderId)">查看详情</a>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">订单号</div>
-									<div class="order-time">D5323246</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">投诉日期</div>
-									<div class="order-time">2018年7月19日</div>
-								</div>
-								<div class="order-bottom bf4">
-									<div class="order-price">被投诉合伙人</div>
-									<div class="order-time">郑万新</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price"></div>
-									<div class="order-time setting">
-										<a class="btn01" href="tel:155566">联系合伙人</a>
-										<a class="btn02" href="javascript:void(0)" @click="opennew('complaintdetail')">查看详情</a>
+					</div>
+					<div class="trade-main" @scroll="myscroll" style="height: calc(100% - 1.5rem);" v-if="myindex==1">
+						<div class="main-inner">
+							<div class="order-box" v-for="val in navdata01">
+								<div class="order-right">
+									<div class="order-bottom">
+										<div class="order-price">订单号</div>
+										<div class="order-time">{{val.pbOrderId}}</div>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div class="order-box">
-							<div class="order-right">
-								<div class="order-bottom">
-									<div class="order-price">订单号</div>
-									<div class="order-time">D5323246</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price">投诉日期</div>
-									<div class="order-time">2018年7月19日</div>
-								</div>
-								<div class="order-bottom bf4">
-									<div class="order-price">被投诉合伙人</div>
-									<div class="order-time">郑万新</div>
-								</div>
-								<div class="order-bottom">
-									<div class="order-price"></div>
-									<div class="order-time setting">
-										<a class="btn01" href="tel:155566">联系合伙人</a>
-										<a class="btn02" href="javascript:void(0)" @click="opennew('complaintdetail')">查看详情</a>
+									<div class="order-bottom">
+										<div class="order-price">投诉日期</div>
+										<div class="order-time">{{val.pbOrRetentionTime}}</div>
+									</div>
+									<div class="order-bottom bf4">
+										<div class="order-price">被投诉合伙人</div>
+										<div class="order-time">{{val.usCpName}}</div>
+									</div>
+									<div class="order-bottom">
+										<div class="order-price"></div>
+										<div class="order-time setting">
+											<a class="btn01" :href="['tel:'+val.usCpPhone+'']">联系合伙人</a>
+											<a class="btn02" href="javascript:void(0)" @click="opennew('complaintdetail',val.pbOrderId)">查看详情</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -110,27 +95,91 @@
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var myvue=new Vue({
-				el:'.wrapper',
-				data:{
-					myindex:0
+			var myvue = new Vue({
+				el: '.wrapper',
+				data: {
+					myindex: 0,
+					navdata: [],
+					navdata01: [],
+					pageNum:0
 				},
-				methods:{
-					indexchange:function(index){
-						this.myindex=index
+				methods: {
+					myscroll: function() {
+						var that = this
+						if(Math.abs($('.main-inner').offset().top) + $('.trade-main').height() + 200 >= $('.main-inner').height()) {
+							if(that.pages>that.pageNum){
+								function plusReady() {
+									// 弹出系统等待对话框
+									var w = plus.nativeUI.showWaiting("等待中...");
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+								that.myajax()
+							}
+							
+						}
 					},
-					opennew:function(target,id){
+					indexchange: function(index) {
+						this.myindex = index
+						this.pageNum=0
+					},
+					opennew: function(target, id) {
+						localStorage.setItem('pbOrderId',id)
 						mui.openWindow({
-							url:'./'+target+'.html',
-							id:target
+							url: './' + target + '.html',
+							id: target
+						})
+					},
+					myajax: function() {
+						var that = this
+						this.pageNum++
+						//						未处理订单
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/queryPbOrderAndUsCommunity",
+							dataType: 'json',
+							data: {
+								usCityPartnerId: localStorage.getItem('usCityPartnerId'),
+								pageNum:that.pageNum
+							},
+							success: function(res) {
+								console.log(res)
+								that.pages=res.data.pages
+								for(var i = 0; i < res.data.list.length; i++) {
+									that.navdata.push(res.data.list[i])
+								}
+							}
+						})
+
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/queryPbOrderAndUsCommunity",
+							dataType: 'json',
+							data: {
+								usCityPartnerId: localStorage.getItem('usCityPartnerId'),
+								pageNum:that.pageNum
+							},
+							success: function(res) {
+								console.log(res)
+								that.pages=res.data.pages
+								for(var i = 0; i < res.data.list.length; i++) {
+									that.navdata01.push(res.data.list[i])
+								}
+							}
 						})
 					}
+
 				},
-				mounted:function(){
-					
+				mounted: function() {
+					this.myajax()
 				}
 			})
 		</script>
 	</body>
+
 </html>

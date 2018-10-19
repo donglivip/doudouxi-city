@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		.detil-tab{display: flex;margin:  .3rem 0;}
+		.detil-tab img{width: 1.5rem;height: 1.5rem;border-radius: .16rem;margin: 0 .2rem 0 .3rem;}
+		.detail-main{flex: 1;margin-right: .3rem;}
+		.detail-title{font-size: .34rem;line-height: .48rem;height: .48rem;overflow: hidden;}
+		.detail-text{font-size: .28rem;color: #B8B8B8;line-height: .4rem;height: .8rem;overflow: hidden;word-break: break-all;margin-top: .22rem;}
+	</style>
+	<body>
+		<div class="wrapper">
+			<!--头部-->
+			<div class="header">
+				<div class="head-tab mui-action-back">
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
+				</div>
+				<div class="head-main">
+					物料包详情
+				</div>
+				<div class="head-tab">
+
+				</div>
+			</div>
+			<div class="main">
+				<div class="detil-tab" v-for="val in navdata">
+					<img :src="val.pbMpgGoodsImg"/>
+					<div class="detail-main">
+						<div class="detail-title">{{val.pbMpgName}}</div>
+						<div class="detail-text">{{val.pbMpgDescribe}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		new Vue({
+			el: '.wrapper',
+			data: {
+				navdata:''
+			},
+			mounted: function() {
+				var that = this
+				$.ajax({
+					type: "post",
+					url: localStorage.getItem('myurl') + "/usCityPartner/queryGoods",
+					dataType: 'json',
+					data:{
+						pbMaterialPackageId:localStorage.getItem('pbMaterialPackageId')
+					},
+					success: function(res) {
+						console.log(res)
+						that.navdata = res.data
+					}
+				});
+			},
+			methods: {
+				
+			}
+		})
+	</script>
+
+</html>

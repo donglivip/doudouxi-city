@@ -27,10 +27,10 @@
 				<div class="main-inner">
 					<div class="titile">账号密码登录 </div>
 					<div class="input-box">
-						<input type="number" placeholder="请输入手机号"/>
+						<input type="number" placeholder="请输入手机号" v-model="usCpPhone"/>
 					</div>
 					<div class="input-box">
-						<input :type="ptype" placeholder="请输入密码"/>
+						<input :type="ptype" placeholder="请输入密码" v-model="usCpPassword"/>
 						<img src="img/number (1).png" @click="changetype('text')" v-if="ptype=='password'"/>
 						<img src="img/number (2).png" @click="changetype('password')" v-if="ptype=='text'"/>
 					</div>
@@ -38,29 +38,75 @@
 						<!--<a href="wlogin.html">忘记密码?</a>-->
 						<a href="plogin.html">手机快捷登录</a>
 					</div>
-					<div class="login" @click="opennew('index','')">登录</div>
+					<div class="login" @click="login">登录</div>
 					<div class="login-type">
 						<div @click="opennew('Agreement','')">登陆即视为同意 	<strong>《豆豆洗注册协议》</strong></div>
 					</div>
 					
-					<div class="three">
+					<!--<div class="three">
 						<div class="thre-title">第三方登录 </div>
 						<div class="three-box">
 							<a href=""><img src="img/QQ@2x.png"/></a>
 							<a href=""><img src="img/wxin.png"/></a>
 						</div>
+					</div>-->
+				</div>
+				<div class="alert" v-if="alertboo" @click="alertshow('')">
+					<div class="alert-inner">
+						<div class="alert-top">豆豆洗</div>
+						<div class="text alert-text">{{alerttext}}</div>
+						<div class="button">确定</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					ptype:'password'
+					ptype:'password',
+					usCpPassword:'',
+					usCpPhone:'',
+					alertboo :false
 				},
 				methods:{
+					alertshow:function(text){
+						this.alerttext=text
+						this.alertboo=!this.alertboo
+					},
+					login:function(){
+						var that=this
+//						15805204773//  123456//
+						if(that.usCpPassword==''||that.usCpPassword==''){
+							that.alertshow('账号和密码都不能为空！')
+							return false;
+						}
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/usCityPartner/checkUsCityPhonePassword",
+							dataType:'json',
+							data:{
+								usCpPhone:that.usCpPhone,
+								usCpPassword:that.usCpPassword
+							},
+							success:function(res){
+								console.log(res)
+								if(res.status==200){
+									localStorage.setItem('usCpNickName',res.data.usCpNickName)
+									localStorage.setItem('usCpAddress',res.data.usCpAddress)
+									localStorage.setItem('usCpAliPayCode',res.data.usCpAliPayCode)
+									localStorage.setItem('usCityPartnerId',res.data.usCityPartnerId)
+									localStorage.setItem('usCpPhone',res.data.usCpPhone)
+									localStorage.setItem('usCpCardImg',res.data.usCpCardImg)
+									that.opennew('index')
+								}else{
+									that.alertshow(res.msg)
+								}
+							}
+						});
+					},
 					changetype:function(text){
 						this.ptype=text
 					},
@@ -72,7 +118,7 @@
 					}
 				},
 				mounted:function(){
-					
+					localStorage.setItem('myurl','http://27.54.248.14:8080')
 				}
 			})
 		</script>
