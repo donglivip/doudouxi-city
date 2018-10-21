@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,21 +9,24 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 		<style type="text/css">
-			.nav .shop .img-box img{width: 45%;}
+			.nav .shop .img-box img {
+				width: 45%;
+			}
 		</style>
 	</head>
+
 	<body>
 		<div class="wrapper nav">
 			<!--头部-->
 			<div class="header">
 				<div class="head-tab mui-action-back">
-					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
 				</div>
 				<div class="head-main">
 					购买物料包
 				</div>
 				<div class="head-tab">
-					
+
 				</div>
 			</div>
 			<!--中间主体-->
@@ -30,7 +34,7 @@
 				<div class="shop-box">
 					<div class="shop" v-for="(val,index) in navdata" @click="opendetail(val.pbMaterialPackageId)">
 						<div class="img-box">
-							<img src="img/liwu.png"/>
+							<img src="img/liwu.png" />
 						</div>
 						<div class="price-box">
 							<div class="name">{{val.pbMpName}}</div>
@@ -38,46 +42,85 @@
 						</div>
 						<div class="subtitile">库存：{{val.pbMpStock}}</div>
 						<div class="add-box">
-							<img src="img/Close-2 Copy 9@2x.png"  @click.stop="addnum('j',index)" />
+							<img src="img/Close-2 Copy 9@2x.png" @click.stop="addnum('j',index)" />
 							<div class="num">{{val.packageNum}}</div>
-							<img src="img/Close-2 Copy 6@2x.png" @click.stop="addnum('z',index)"/>
+							<img src="img/Close-2 Copy 6@2x.png" @click.stop="addnum('z',index)" />
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="bottom">
-				<div class="nav-left" @click="alertshow">
+				<div class="nav-left">
 					<div class="bprice">合计:￥{{allnum}}</div>
 				</div>
-				<div class="nav-right" @click="pay()">
+				<div class="nav-right" @click="alertshow()">
 					去结算
+				</div>
+			</div>
+			<div class="alert" v-if='alertboo' @click="alertshow">
+				<div class="alert-inner">
+					<div class="alert-top">
+						豆豆洗
+					</div>
+					<div class="text">请选择支付方式</div>
+					<div class="button">
+						<span style="flex: 1;text-align: center;border-right: 1px solid #FFFFFF;" @click="pay(1)">支付宝</span>
+						<span style="flex: 1;text-align: center;" @click="pay(2)">微信</span>
+					</div>
 				</div>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var myvue=new Vue({
-				el:'.wrapper',
-				data:{
-					alertboo:false,
-					navdata:'',
-					cartdata:[],
-					allnum:0
+			var myvue = new Vue({
+				el: '.wrapper',
+				data: {
+					alertboo: false,
+					navdata: '',
+					cartdata: [],
+					allnum: 0,
+					allnumber: 0,
+					channel: []
 				},
-				methods:{
-					pay:function(){
-						var that=this
+				methods: {
+					pay: function(type) {
+						var that = this,
+							pbPackageDetailes = [],
+							pbPackageDetaile = {}
+						for(var i = 0; i < that.cartdata.length; i++) {
+							pbPackageDetaile = {}
+							pbPackageDetaile.pbMaterialPackageId = that.cartdata[i].pbMaterialPackageId
+							pbPackageDetaile.packageNum = that.cartdata[i].packageNum
+							pbPackageDetaile.packagePrice = that.cartdata[i].pbMpPrice
+							pbPackageDetailes.push(pbPackageDetaile)
+						}
+						var ajaxjson = {
+							usCityPartnerId: localStorage.getItem('usCityPartnerId'),
+							pbCpoPrice: allnum,
+							pbCpoNum: that.allnumber,
+							pbPackageDetailes: pbPackageDetailes
+						}
+						console.log(ajaxjson)
 						$.ajax({
-							type:"post",
-							url:localStorage.getItem('myurl')+"/usCityPartner/buyActivityPackage",
-							dataType:'json',
-							success:function(res){
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/buyActivityPackage",
+							dataType: 'json',
+							data: {
+								data: JSON.stringify(ajaxjson),
+								status: type
+							},
+							success: function(res) {
 								console.log(res)
-								for (var i=0;i<res.data.length;i++) {
-									res.data[i].packageNum=0
-								}
-								that.navdata=res.data
+								var index = (type == 1 ? 0 : 1)
+								var data = (type == 1 ? res.data[0] : res.data)
+								plus.payment.request(that.channel[index], data, function(result) {
+									plus.nativeUI.alert("支付成功！", function() {
+										that.opennew('index')
+									});
+								}, function(error) {
+									console.log(JSON.stringify(error))
+								});
 							}
 						});
 					},
@@ -91,47 +134,65 @@
 							this.navdata[index].packageNum++
 						}
 						that.allnum = 0
-						that.cartdata=[]
+						that.allnumber = 0
+						that.cartdata = []
 						for(var i = 0; i < that.navdata.length; i++) {
 							if(that.navdata[i].packageNum > 0) {
 								that.cartdata.push(that.navdata[i])
 								that.allnum += that.navdata[i].packageNum * that.navdata[i].pbMpPrice
+								that.allnumber += that.navdata[i].packageNum
 							}
 						}
 					},
-					opendetail:function(id){
-						localStorage.setItem('pbMaterialPackageId',id)
+					opendetail: function(id) {
+						localStorage.setItem('pbMaterialPackageId', id)
 						this.opennew('shopdetail')
 					},
-					alertshow:function(){
-						this.alertboo=!this.alertboo
+					alertshow: function() {
+						this.alertboo = !this.alertboo
 					},
-					opennew:function(target,id){
+					opennew: function(target, id) {
 						mui.openWindow({
-							url:'./'+target+'.html',
-							id:target
+							url: './' + target + '.html',
+							id: target
 						})
 					},
-					myajax:function(){
-						var that=this
+					myajax: function() {
+						var that = this
 						$.ajax({
-							type:"post",
-							url:localStorage.getItem('myurl')+"/usCityPartner/queryPbMaterialPackage",
-							dataType:'json',
-							success:function(res){
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/queryPbMaterialPackage",
+							dataType: 'json',
+							success: function(res) {
 								console.log(res)
-								for (var i=0;i<res.data.length;i++) {
-									res.data[i].packageNum=0
+								for(var i = 0; i < res.data.length; i++) {
+									res.data[i].packageNum = 0
 								}
-								that.navdata=res.data
+								that.navdata = res.data
 							}
 						});
 					}
 				},
-				mounted:function(){
+				mounted: function() {
 					this.myajax()
+					var that = this
+					// 1. 获取支付通道
+					function plusReady() {
+						// 获取支付通道
+						plus.payment.getChannels(function(channels) {
+							that.channel = channels;
+						}, function(e) {
+							alert("获取支付通道失败：" + e.message);
+						});
+					}
+					if(window.plus) {
+						plusReady();
+					} else {
+						document.addEventListener('plusready', plusReady, false);
+					}
 				}
 			})
 		</script>
 	</body>
+
 </html>

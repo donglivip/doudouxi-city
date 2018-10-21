@@ -122,6 +122,8 @@
 			},
 			mounted:function(){
 				this.myajax()
+				localStorage.setItem('myurl','http://27.54.248.14:8080')
+				console.log(localStorage.getItem('usCityPartnerId'))
 				if(localStorage.getItem('usCityPartnerId')==undefined){
 					this.opennew('mlogin')
 				}
