@@ -107,8 +107,8 @@
 							this.alertshow('请选择提现方式！')
 							return false;
 						}
-						if(this.payPassword == '') {
-							this.alertshow('支付密码为空！')
+						if(this.payPassword == ''||localStorage.getItem('usCpPayPassword')!=this.payPassword) {
+							this.alertshow('支付密码错误！')
 							return false;
 						}
 						var that = this

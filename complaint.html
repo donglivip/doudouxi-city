@@ -39,7 +39,8 @@
 					</div>
 					<div class="trade-main" @scroll="myscroll" style="height: calc(100% - 1.5rem);" v-if="myindex==0">
 						<div class="main-inner">
-							<div class="order-box" v-for="val in navdata">
+							<img src="img/blank.png" v-if="navdata.length==0" style="margin: .8rem auto;display: block;height: 2.5rem;"/>
+							<div class="order-box" v-for="val in navdata" v-if="navdata.length!=0">
 								<div class="order-right">
 									<div class="order-bottom">
 										<div class="order-price">订单号</div>
@@ -66,7 +67,8 @@
 					</div>
 					<div class="trade-main" @scroll="myscroll" style="height: calc(100% - 1.5rem);" v-if="myindex==1">
 						<div class="main-inner">
-							<div class="order-box" v-for="val in navdata01">
+							<img src="img/blank.png" v-if="navdata01.length==0" style="margin: .8rem auto;display: block;height: 2.5rem;"/>
+							<div class="order-box" v-for="val in navdata01" v-if="navdata01.length!=0">
 								<div class="order-right">
 									<div class="order-bottom">
 										<div class="order-price">订单号</div>

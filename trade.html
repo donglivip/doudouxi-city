@@ -67,7 +67,8 @@
 							<div class="radius"></div>
 						</div>
 					</div>
-					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata01" v-if="myindex==0">
+					<img src="img/blank.png" v-if="mydata01.length==0&&myindex==0" style="margin: .8rem auto;display: block;height: 2.5rem;"/>
+					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata01" v-if="myindex==0&&mydata01.length!=0">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">{{val.commName}}</div>
@@ -83,7 +84,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata02" v-if="myindex==1">
+					<img src="img/blank.png" v-if="mydata02.length==0&&myindex==1" style="margin: .8rem auto;display: block;height: 2.5rem;"/>
+					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata02" v-if="myindex==1&&mydata02.length!=0">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">{{val.commName}}</div>
@@ -99,7 +101,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata03" v-if="myindex==2">
+					<img src="img/blank.png" v-if="mydata03.length==0&&myindex==2" style="margin: .8rem auto;display: block;height: 2.5rem;"/>
+					<div class="order-box" @click="opennew('tradedetail',val.usCommunityPartnerId,val.commName)" v-for="val in mydata03" v-if="myindex==2&&mydata03.length!=0">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">{{val.commName}}</div>
@@ -155,6 +158,7 @@
 								usCityPartnerId:localStorage.getItem('usCityPartnerId')
 							},
 							success:function(res){
+								
 								that.mydata03=res.data
 							}
 						});
@@ -166,6 +170,7 @@
 								usCityPartnerId:localStorage.getItem('usCityPartnerId')
 							},
 							success:function(res){
+								console.log(res)
 								that.mydata02=res.data
 							}
 						});

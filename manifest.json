@@ -161,7 +161,8 @@
 					"examine.html",
 					"model.html",
 					"alert.html",
-					"share.html"
+					"share.html",
+					"mlogin.html"
 				],
 				"priority": 0
 			},
@@ -279,7 +280,8 @@
 					"pchange.html",
 					"wlogin.html",
 					"namechange.html",
-					"usercenter.html"
+					"usercenter.html",
+					"mlogin.html"
 				],
 				"priority": 0
 			},

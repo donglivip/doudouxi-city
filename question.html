@@ -12,57 +12,59 @@
 		<div class="wrapper help">
 			<!--头部-->
 			<div class="header">
-				<div class="head-tab mui-action-back">
+				<a class="head-tab" href="javascript:history.back()">
 					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
-				</div>
+				</a>
 				<div class="head-main">
 					常见问题
 				</div>
-				<div class="head-tab">
+				<a class="head-tab" href="javascript:void(0)">
 					
-				</div>
+				</a>
 			</div>
 			<!--中间主体-->
 			<div class="main big-main">
-				<div class="help-item" @click="opennew('question-detail')">
-					<div>真丝类衣物怎么清洗？</div>
-					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
-				</div>
-				<div class="help-item" @click="opennew('question-detail')">
-					<div>常见问题？</div>
-					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
-				</div>
-				<div class="help-item" @click="opennew('question-detail')">
-					<div>关于投诉？</div>
-					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
-				</div>
-				<div class="help-item" @click="opennew('question-detail')">
-					<div>关于投诉？</div>
-					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
-				</div>
-				<div class="help-item" @click="opennew('question-detail')">
-					<div>关于投诉？</div>
-					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
-				</div>
+				<block v-for="(val,index) in mydata">
+					<div class="help-item" @click="change(index)">
+						<div>{{val.pbCpTitle}}？</div>
+						<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
+					</div>
+					<div class="help-text" style="margin: .3rem;" v-if="val.boo==true">
+						{{val.pbCpContent}}
+					</div>
+				</block>
 			</div>
 		</div>
-		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-
+					mydata:[]
 				},
 				methods:{
-					opennew:function(target,id){
-						mui.openWindow({
-							url:'./'+target+'.html',
-							id:target
-						})
+					myajax:function(){
+						var that=this
+						$.ajax({
+							type:"post",
+							url:localStorage.getItem('myurl')+"/share/getHelpProblem",
+							async:true,
+							dataType:'json',
+							success:function(res){
+								for (var i = 0; i < res.data.length; i++) {
+									res.data[i].boo=false
+								}
+								console.log(res.data)
+								that.mydata=res.data
+							}
+						});
+					},
+					change:function(index){
+						this.mydata[index].boo=!this.mydata[index].boo
 					}
 				},
 				mounted:function(){
-					
+					this.myajax()
 				}
 			})
 		</script>

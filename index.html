@@ -11,7 +11,8 @@
 	<body>
 		<div class="wrapper index">
 			<div class="main">
-				<img :src="navdata[0].pbNsImgUrl" class="banner" v-if="navdata!=''"/>
+				<!--<img :src="navdata[0].pbNsImgUrl" class="banner" v-if="navdata!=''"/>-->
+				<img src="img/index.jpg" class="banner" v-if="navdata!=''"/>
 				<div class="notice" v-if="navdata!=''">
 					<img src="img/notice.png"/>
 					 <!--@click="opennew('lxidi')"-->
@@ -89,7 +90,10 @@
 		var myvue=new Vue({
 			el:'.wrapper',
 			data:{
-				navdata:'',
+				navdata: [{
+					pbNwContent:'豆豆洗社区合伙人正式上线啦',
+					pbNsImgUrl:'./img/index.jpg'
+				}],
 				pageNum:0,
 				mydata:[]
 			},
@@ -115,18 +119,18 @@
 							usCityPartnerId:localStorage.getItem('usCityPartnerId')
 						},
 						success:function(res){
-							that.navdata=res.data
+							if(res.data.length!=0){
+								that.navdata = res.data
+							}
 						}
 					});
 				}
 			},
 			mounted:function(){
-				this.myajax()
-				localStorage.setItem('myurl','http://27.54.248.14:8080')
-				console.log(localStorage.getItem('usCityPartnerId'))
-				if(localStorage.getItem('usCityPartnerId')==undefined){
-					this.opennew('mlogin')
+				if(localStorage.getItem('usCityPartnerId')==null){
+					window.location.href='mlogin.html'
 				}
+				this.myajax()
 			}
 		})
 	</script>

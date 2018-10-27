@@ -32,9 +32,13 @@
 					<div>昵称</div>
 					<div>雨雪霏霏</div>
 				</div>-->
-				<div class="help-item" @click="opennew('wlogin')">
+				<!--<div class="help-item" @click="opennew('wlogin')">
 					<div>登录密码</div>
 					<img src="img/Arrow_simple_rightt Copy 3@2x.png"/>
+				</div>-->
+				<div class="help-item" @click="backlogin">
+					<div>退出登录</div>
+					<img src="img/Arrow_simple_rightt Copy 3@2x.png" />
 				</div>
 				<!--<div class="help-item" @click="opennew('pchange')">
 					<div>支付密码</div>
@@ -51,6 +55,13 @@
 					files:[]
 				},
 				methods:{
+					backlogin: function() {
+						localStorage.clear()
+						mui.openWindow({
+							url: './mlogin.html',
+							id: 'mlogin'
+						})
+					},
 					opennew:function(target,id){
 						mui.openWindow({
 							url:'./'+target+'.html',

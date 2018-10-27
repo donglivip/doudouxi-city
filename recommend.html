@@ -61,6 +61,7 @@
 					</div>
 					<div class="trade-main" @scroll="myscroll">
 						<div class="main-inner">
+							<img src="img/blank.png" v-if="mydata01.length==0" style="display: block;margin: .8rem auto;height: 2.5rem;"/>
 							<div class="order-box" v-for="val in mydata01">
 								<div class="order-right">
 									<div class="order-bottom">
