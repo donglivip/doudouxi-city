@@ -276,3 +276,4 @@ input{border: 0;}
 .communitydetail .user-tab .myimg{width: .15rem;margin-right: .3rem;}
 .communitydetail .top{margin-top: .2rem;}
 .complaintb{border: 1px solid #096148;color: #096148;border-radius: .5rem;margin:0 .2rem;height: .6rem;display: flex;align-items: center;justify-content: center;font-size: .22rem;}
+.circle{width: .2rem;height: .2rem;background: #45C953;border-radius: 50%;}

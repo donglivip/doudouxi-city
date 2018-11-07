@@ -24,6 +24,7 @@
 			</div>
 			<!--中间主体-->
 			<div class="main big-main sharedetail">
+				<div class="main-inner">
 					<div class="order-box alert01" v-for="val in mydata">
 						<div class="order-right">
 							<div class="order-bottom">
@@ -40,9 +41,11 @@
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">设备状态</div>
-								<div class="order-time red">{{val.pbPdStatus | mystate}}</div>
+								<div class="circle" v-if="val.deviceCaseReason.length==0"></div>
+								<div class="order-time red" v-for="item in val.deviceCaseReason" v-if="val.deviceCaseReason.length>0">{{item.pbPdcNum}}号{{item.pbPdrContent}}</div>
 							</div>
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -53,7 +56,9 @@
 			var myvue=new Vue({
 				el:'.wrapper',
 				data:{
-					mydata:''
+					mydata: [],
+					pages:0,
+					pageNum:0
 				},
 				methods:{
 					indexchange:function(index){
@@ -68,18 +73,41 @@
 					},
 					myajax:function(){
 						var that=this
+						that.pageNum++
 						$.ajax({
 							type:"post",
 							url:localStorage.getItem('myurl')+"/community/selectPbPartnerDevice",
 							dataType:'json',
 							data:{
-								usCommunityPartnerId:localStorage.getItem('usCommunityPartnerId')
+								usCommunityPartnerId:localStorage.getItem('usCommunityPartnerId'),
+								pageNum:that.pageNum
 							},
 							success:function(res){
 								console.log(res)
-								that.mydata=res.data
+								that.pages=res.data.pages
+								for(var i = 0; i < res.data.list.length; i++) {
+									that.mydata.push(res.data.list[i])
+								}
 							}
 						});
+					},
+					myscroll: function() {
+						var that = this
+						if(Math.abs($('.main-inner').offset().top) + $('.main').height() + 200 >= $('.main-inner').height()) {
+							if(that.pages>that.pageNum){
+								function plusReady() {
+									// 弹出系统等待对话框
+									var w = plus.nativeUI.showWaiting("等待中...");
+								}
+								if(window.plus) {
+									plusReady();
+								} else {
+									document.addEventListener("plusready", plusReady, false);
+								}
+								that.myajax()
+							}
+							
+						}
 					}
 				},
 				mounted:function(){
