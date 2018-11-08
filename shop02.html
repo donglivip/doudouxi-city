@@ -27,7 +27,7 @@
 			<!--中间主体-->
 			<div class="main big-main sharedetail" @scroll="myscroll">
 				<div class="main-inner">
-					<div class="order-box alert01" v-for="val in mydata">
+					<div class="order-box alert01" v-for="val in mydata" @click="opennew('communitydetail02',val.usStoreId)">
 						<div class="order-right">
 							<div class="order-bottom">
 								<div class="order-price">店铺名称</div>
@@ -79,12 +79,13 @@
 					indexchange: function(index) {
 						this.myindex = index
 					},
-					opennew: function(type) {
-						if(type == 'q') {
-							window.location.href = './havetype.html'
-						} else {
-
-						}
+					opennew: function(target,id) {
+						localStorage.setItem('usStoreId',id)
+						mui.openWindow({
+							url: './' + target + '.html',
+							id: target,
+							createNew:true
+						})
 					},
 					myajax: function() {
 						var that = this

@@ -60,7 +60,7 @@
 					},
 					login:function(){
 						var that=this
-						if(that.phone==that.nphone){
+						if(that.phone==that.nphone&&that.phone!=''){
 							$.ajax({
 								type:"post",
 								url:localStorage.getItem('myurl')+"/usCityPartner/updateUsCityPartner",
