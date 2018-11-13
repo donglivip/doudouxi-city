@@ -60,6 +60,12 @@
 						{{mydata.usStSpencialIndustryImg==''?'未认证':'已认证'}}
 					</div>
 				</a>
+				<a class="user-tab" href="javascript:void(0)">
+					<div class="tab-text">审核状态</div>
+					<div class="tab-text">
+						{{mydata.usStExamineStatus | mystate}}
+					</div>
+				</a>
 			</div>
 		</div>
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
@@ -95,6 +101,21 @@
 				},
 				mounted:function(){
 					this.myajax()
+				},
+				filters:{
+					mystate:function(value){
+						switch (value){
+							case 1:
+								return '审核通过'
+								break;
+							case 2:
+								return '等待审核'
+								break;	
+							default:
+								return '审核失败'
+								break;
+						}
+					}
 				}
 			})
 		</script>

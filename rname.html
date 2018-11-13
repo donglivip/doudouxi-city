@@ -88,6 +88,9 @@
 				},
 				mounted: function() {
 
+					if(localStorage.getItem('usCpAliPayCode')!='null'&&localStorage.getItem('usCpAliPayCode')!='undefined'){
+						this.usCpAliPayCode=localStorage.getItem('usCpAliPayCode')
+					}
 				}
 			})
 		</script>

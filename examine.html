@@ -49,7 +49,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="order-box" v-if="myindex==0" v-for="val in navdata[1]" @click="opendetail(val.queryActivityById)">
+						<div class="order-box" v-if="myindex==0" v-for="val in navdata[1]" @click="opendetail(val.pbActivityTreasulrId)">
 							<div class="order-right">
 								<div class="order-bottom">
 									<div class="order-price">申请人</div>
@@ -195,6 +195,7 @@
 								usCityPartnerId:localStorage.getItem('usCityPartnerId')
 							},
 							success:function(res){
+								console.log(res)
 								that.navdata=res.data
 							}
 						});

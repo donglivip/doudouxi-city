@@ -37,7 +37,7 @@
 			<!--中间主体-->
 			<div class="main big-main">
 				<div class="profit-top">
-					<div class="subtitile" style="color: #096148;">提现金额</div>
+					<!--<div class="subtitile" style="color: #096148;">提现金额</div>-->
 					<input type="price" placeholder="请输入提现金额" v-model="price" />
 					<div class="subtitile">可提现额￥{{mydata[0].usCpwBalance}}</div>
 					<div class="profit-type" @click="alertshow02">
@@ -53,7 +53,7 @@
 				<div class="alert" v-show="alertboo02" @click="alertshow02">
 					<div class="alert-inner">
 						<img src="img/Group 10@2x.png" />
-						<div class="text">支付方式</div>
+						<div class="text">提现方式</div>
 						<div class="button">
 							<span v-if="usAliPayCode!=undefined" @click="paytype(1)">支付宝</span>
 							<span v-if="usAliPayCode==undefined" @click="opennnew('rname')">您还未绑定支付宝</span>
@@ -111,6 +111,10 @@
 							this.alertshow('支付密码错误！')
 							return false;
 						}
+						if(this.price<=this.mydata01.pbPfInitialAmount||this.price>=this.mydata01.pbPfMaxAmount){
+							plus.nativeUI.toast('提现金额在'+this.mydata01.pbPfInitialAmount+' ~ '+this.mydata01.pbPfMaxAmount+'之间！')
+							return false;
+						}
 						var that = this
 						var payCode;
 						if(that.style == 1) {
@@ -134,7 +138,7 @@
 							success: function(res) {
 								console.log(res)
 								if(res.data!=1){
-									alert('提现失败')
+									alert(res.msg)
 								}else{
 									mui.back()
 								}
@@ -178,7 +182,7 @@
 					mytype: function(value) {
 						switch(value) {
 							case '':
-								return '请选择支付方式'
+								return '请选择提现方式'
 								break;
 							case 1:
 								return '支付宝'

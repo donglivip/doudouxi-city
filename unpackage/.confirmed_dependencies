@@ -20,7 +20,8 @@
       "model.html",
       "alert.html",
       "share.html",
-      "mlogin.html"
+      "mlogin.html",
+      "shop.html"
     ]
   },
   "usercenter.html": {

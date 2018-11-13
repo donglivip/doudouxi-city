@@ -31,7 +31,9 @@
 								<div class="order-h1">
 									{{val.usCpfdReason}}
 								</div>
-								<div class="order-state">{{val.usCpfdPrice}}</div>
+								<div class="order-state">
+									<span v-if="val.usCpfdStyle==3">+</span>
+									{{val.usCpfdPrice}}</div>
 							</div>
 							<div class="order-bottom">
 								<div class="order-price">余额:{{val.usCpfdBalance}}</div>

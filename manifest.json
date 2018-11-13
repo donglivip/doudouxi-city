@@ -160,7 +160,8 @@
 					"model.html",
 					"alert.html",
 					"share.html",
-					"mlogin.html"
+					"mlogin.html",
+					"shop.html"
 				],
 				"priority": 0
 			},
