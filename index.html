@@ -1,82 +1,84 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 	</head>
+
 	<body>
 		<div class="wrapper index">
 			<div class="main">
 				<!--<img :src="navdata[0].pbNsImgUrl" class="banner" v-if="navdata!=''"/>-->
-				<img src="img/index.jpg" class="banner" v-if="navdata!=''"/>
+				<img src="img/index.jpg" class="banner" v-if="navdata!=''" />
 				<div class="notice" v-if="navdata!=''">
-					<img src="img/notice.png"/>
-					 <!--@click="opennew('lxidi')"-->
+					<img src="img/notice.png" />
+					<!--@click="opennew('lxidi')"-->
 					<div>
 						公告：{{navdata[0].pbNwContent}}
 					</div>
 				</div>
 				<div class="nav-box">
-						<div class="nav-item" @click="opennew('trade')">
-							<img src="img/nav0.png"/>
-							<div>交易收入</div>
-						</div>
-						<div class="nav-item" @click="opennew('recommend')">
-							<img src="img/nav1.png"/>
-							<div>推荐收入</div>
-						</div>
-						<div class="nav-item" @click="tost">
-							<img src="img/nav2.png"/>
-							<div>广告收入</div>
-						</div>
+					<div class="nav-item" @click="opennew('trade')">
+						<img src="img/nav0.png" />
+						<div>交易收入</div>
 					</div>
-					<div class="nav-box" style="flex: 1;">
-						<div class="nav-item" @click="opennew('community')">
-							<img src="img/nav3.png"/>
-							<div>社区合伙人</div>
-						</div>
-						<div class="nav-item" @click="opennew('complaint')">
-							<img src="img/nav4.png"/>
-							<div>投诉管理</div>
-						</div>
-						<div class="nav-item" @click="opennew('examine')">
-							<img src="img/nav5.png"/>
-							<div>审批管理</div>
-						</div>
-						<div class="nav-item" @click="opennew('model')">
-							<img src="img/nav6.png"/>
-							<div>模块管理</div>
-						</div>
-						<div class="nav-item" @click="opennew('alert')">
-							<img src="img/nav7.png"/>
-							<div>警报系统</div>
-						</div>
-						<div class="nav-item" @click="opennew('share')">
-							<img src="img/nav8.png"/>
-							<div>分享赚钱</div>
-						</div>
+					<div class="nav-item" @click="opennew('recommend')">
+						<img src="img/nav1.png" />
+						<div>推荐收入</div>
 					</div>
+					<div class="nav-item" @click="tost">
+						<img src="img/nav2.png" />
+						<div>广告收入</div>
+					</div>
+				</div>
+				<div class="nav-box" style="flex: 1;">
+					<div class="nav-item" @click="opennew('community')">
+						<img src="img/nav3.png" />
+						<div>社区合伙人</div>
+					</div>
+					<div class="nav-item" @click="opennew('complaint')">
+						<img src="img/nav4.png" />
+						<div>投诉管理</div>
+					</div>
+					<div class="nav-item" @click="opennew('examine')">
+						<img src="img/nav5.png" />
+						<div>审批管理</div>
+					</div>
+					<div class="nav-item" @click="opennew('model')">
+						<img src="img/nav6.png" />
+						<div>模块管理</div>
+					</div>
+					<div class="nav-item" @click="opennew('alert')">
+						<img src="img/nav7.png" />
+						<div>警报系统</div>
+					</div>
+					<div class="nav-item" @click="opennew('share')">
+						<img src="img/nav8.png" />
+						<div>分享赚钱</div>
+					</div>
+				</div>
 			</div>
 			<!--底部-->
 			<div class="bottom">
 				<div class="bottom-tab">
-					<img src="img/bottom01-active.png"/>
+					<img src="img/bottom01-active.png" />
 					<div class="bottom-text active">
 						首页
 					</div>
 				</div>
 				<div class="bottom-tab" @click="opennew('newcenter')">
-					<img src="img/bottom02.png"/>
+					<img src="img/bottom02.png" />
 					<div class="bottom-text">
 						消息
 					</div>
 				</div>
 				<div class="bottom-tab" @click="opennew('usercenter')">
-					<img src="img/bottom03.png"/>
+					<img src="img/bottom03.png" />
 					<div class="bottom-text">
 						我的
 					</div>
@@ -86,52 +88,97 @@
 	</body>
 	<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/url.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		var myvue=new Vue({
-			el:'.wrapper',
-			data:{
+		var myvue = new Vue({
+			el: '.wrapper',
+			data: {
 				navdata: [{
-					pbNwContent:'豆豆洗社区合伙人正式上线啦',
-					pbNsImgUrl:'./img/index.jpg'
+					pbNwContent: '豆豆洗社区合伙人正式上线啦',
+					pbNsImgUrl: './img/index.jpg'
 				}],
-				pageNum:0,
-				mydata:[]
+				pageNum: 0,
+				mydata: []
 			},
-			methods:{
-				tost:function(){
+			methods: {
+				tost: function() {
 					plus.nativeUI.toast('功能正在开发中~')
 				},
-				opennew:function(target,id){
-						mui.openWindow({
-							url:'./'+target+'.html',
-							id:target
-						})
+				opennew: function(target, id) {
+					mui.openWindow({
+						url: './' + target + '.html',
+						id: target
+					})
 				},
-				myajax:function(){
-					var that=this
-//					公告消息
+				myajax: function() {
+					var that = this
+					//					公告消息
 					that.pageNum++
-					$.ajax({
-						type:"post",
-						url:localStorage.getItem('myurl')+"/usCityPartner/queryMesMiddle",
-						dataType:'json',
-						data:{
-							usCityPartnerId:localStorage.getItem('usCityPartnerId')
-						},
-						success:function(res){
-							if(res.data.length!=0){
-								that.navdata = res.data
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/usCityPartner/queryMesMiddle",
+							dataType: 'json',
+							data: {
+								usCityPartnerId: localStorage.getItem('usCityPartnerId')
+							},
+							success: function(res) {
+								if(res.data.length != 0) {
+									that.navdata = res.data
+								}
 							}
-						}
-					});
+						});
 				}
 			},
-			mounted:function(){
-				if(localStorage.getItem('usCityPartnerId')==null){
-					window.location.href='mlogin.html'
+			mounted: function() {
+				var that = this
+				function plusReady() {
+					plus.runtime.getProperty(plus.runtime.appid, function(inf) {
+						
+						$.ajax({
+							type: "post",
+							url: localStorage.getItem('myurl') + "/backstageCommunity/selectPbAppVersion",
+							dataType: 'json',
+							success: function(res) {
+								if(res.data.pbAvCityCode != inf.version) {
+									plus.nativeUI.showWaiting("版本更新，下载资源中！");
+									plus.downloader.createDownload(localStorage.getItem('myurl') + res.data.pbAvCityUrl, {
+										filename: "_doc/update/"
+									}, function(d, status) {
+										if(status == 200) {
+											plus.runtime.install(d.filename, {}, function() {
+												plus.nativeUI.closeWaiting();
+												plus.nativeUI.alert("应用资源更新完成！点击重启！", function() {
+													plus.runtime.restart();
+												});
+											}, function(e) {
+												plus.nativeUI.closeWaiting();
+												plus.nativeUI.alert("安装wgt文件失败[" + e.code + "]：" + e.message);
+											});
+										} else {
+											plus.nativeUI.alert("下载wgt失败！");
+										}
+									}).start();
+								} else {
+									if(localStorage.getItem('usCityPartnerId') == null) {
+										window.location.href = 'mlogin.html'
+									}
+									that.myajax()
+								}
+							},
+							error: function(err) {
+								alert(JSON.stringify(err))
+							}
+						});
+					});
 				}
-				this.myajax()
+				if(window.plus) {
+					plusReady();
+				} else {
+					document.addEventListener("plusready", plusReady, false);
+				}
+
 			}
 		})
 	</script>
+
 </html>
