@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -8,25 +9,26 @@
 		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
 		<title></title>
 	</head>
+
 	<body>
 		<div class="wrapper community">
 			<!--头部-->
 			<div class="header">
 				<div class="head-tab mui-action-back">
-					<img src="img/Arrow_Simple_left Copy@2x.png" class="back"/>
+					<img src="img/Arrow_Simple_left Copy@2x.png" class="back" />
 				</div>
 				<div class="head-main">
 					社区合伙人
 				</div>
 				<div class="head-tab">
-					
+
 				</div>
 			</div>
 			<!--中间主体-->
 			<div class="main big-main">
 				<div class="main-inner">
 					<div class="community-box" @click="opennew('communitydetail',val.usCommunityPartnerId)" v-for="val in mydata">
-						<img :src="val.usCpHeadImg"/>
+						<img :src="val.usCpHeadImg | myimg" />
 						<div class="community-main">
 							<h2>{{val.usCpName}}</h2>
 							<p>联系方式：{{val.usCpPhone}}</p>
@@ -38,40 +40,46 @@
 		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			var myvue=new Vue({
-				el:'.wrapper',
-				data:{
-					mydata:[]
+			var myvue = new Vue({
+				el: '.wrapper',
+				data: {
+					mydata: []
 				},
-				methods:{
-					opennew:function(target,id){
-						localStorage.setItem('usCommunityPartnerId',id)
+				methods: {
+					opennew: function(target, id) {
+						localStorage.setItem('usCommunityPartnerId', id)
 						mui.openWindow({
-							url:'./'+target+'.html',
-							id:target
+							url: './' + target + '.html',
+							id: target
 						})
 					},
-					myajax:function(){
-						var that=this
+					myajax: function() {
+						var that = this
 						that.pageNum++
-						$.ajax({
-							type:"post",
-							url:localStorage.getItem('myurl')+"/usCityPartner/queryUsCommunityPartnerPojo",
-							dataType:'json',
-							data:{
-								usCityPartnerId:localStorage.getItem('usCityPartnerId')
-							},
-							success:function(res){
-								console.log(res)
-								that.mydata=res.data
-							}
-						});
+							$.ajax({
+								type: "post",
+								url: localStorage.getItem('myurl') + "/usCityPartner/queryUsCommunityPartnerPojo",
+								dataType: 'json',
+								data: {
+									usCityPartnerId: localStorage.getItem('usCityPartnerId')
+								},
+								success: function(res) {
+									console.log(res)
+									that.mydata = res.data
+								}
+							});
 					}
 				},
-				mounted:function(){
+				mounted: function() {
 					this.myajax()
+				},
+				filters: {
+					myimg: function(value) {
+							return localStorage.getItem('myurl') + value
+					}
 				}
 			})
 		</script>
 	</body>
+
 </html>

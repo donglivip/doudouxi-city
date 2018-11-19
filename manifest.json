@@ -35,7 +35,7 @@
         "Maps": {
             "description": "管理地图插件"
         },
-        "Payment":{}
+        "Payment":{},"Share":{}
     },
     "plus": {
         "splashscreen": {
@@ -45,7 +45,7 @@
         "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
         "runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
         "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
-        "distribute": {"plugins":{"payment":{"weixin":{"description":"微信支付","appid":"wxa1862a6cfe4e0c5c"},"alipay":{"description":"阿里支付","scheme":""}}},
+        "distribute": {"plugins":{"share":{"weixin":{"appid":"wx973bc008e05a79ee","appsecret":"897aa721e590f6f6dd36bfb9a44fcb39","description":"可选，微信分享"}},"payment":{"weixin":{"description":"微信支付","appid":"wx973bc008e05a79ee"},"alipay":{"description":"阿里支付","scheme":""}}},
             "apple": {
                 "appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
                 "mobileprovision": "",/*iOS应用打包配置文件*/
@@ -390,7 +390,8 @@
 				"refer": [
 					"examine.html",
 					"pay.html",
-					"index.html"
+					"index.html",
+					"shopdetail.html"
 				],
 				"priority": 0
 			},

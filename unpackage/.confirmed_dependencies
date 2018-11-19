@@ -5,7 +5,8 @@
       "usercenter.html",
       "new-gonggao.html",
       "new-order.html"
-    ]
+    ],
+    "resources": []
   },
   "index.html": {
     "refer": [
@@ -22,7 +23,8 @@
       "share.html",
       "mlogin.html",
       "shop.html"
-    ]
+    ],
+    "resources": []
   },
   "usercenter.html": {
     "refer": [
@@ -32,34 +34,40 @@
       "setting.html",
       "help.html",
       "aboutus.html"
-    ]
+    ],
+    "resources": []
   },
   "trade.html": {
     "refer": [
       "index.html",
       "tradedetail.html"
-    ]
+    ],
+    "resources": []
   },
   "lxidi.html": {
     "refer": [
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "recommend.html": {
     "refer": [
       "search.html",
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "search.html": {
     "refer": [
       "recommend.html"
-    ]
+    ],
+    "resources": []
   },
   "profitdetail.html": {
     "refer": [
       "integral.html"
-    ]
+    ],
+    "resources": []
   },
   "integral.html": {
     "refer": [
@@ -67,42 +75,50 @@
       "rname.html",
       "profitgo.html",
       "usercenter.html"
-    ]
+    ],
+    "resources": []
   },
   "new-gonggao.html": {
     "refer": [
       "newcenter.html"
-    ]
+    ],
+    "resources": []
   },
   "new-order.html": {
     "refer": [
       "newcenter.html"
-    ]
+    ],
+    "resources": []
   },
   "rname.html": {
     "refer": [
       "integral.html"
-    ]
+    ],
+    "resources": []
   },
   "profitgo.html": {
     "refer": [
       "integral.html"
-    ]
+    ],
+    "resources": []
   },
   "pchange.html": {
     "refer": [
       "setting.html"
-    ]
+    ],
+    "resources": []
   },
   "wlogin.html": {
     "refer": [
       "setting.html"
-    ]
+    ],
+    "resources": []
   },
   "namechange.html": {
     "refer": [
       "setting.html"
-    ]
+    ],
+    "resources": []
   },
   "setting.html": {
     "refer": [
@@ -111,51 +127,60 @@
       "namechange.html",
       "usercenter.html",
       "mlogin.html"
-    ]
+    ],
+    "resources": []
   },
   "question-detail.html": {
     "refer": [
       "question.html"
-    ]
+    ],
+    "resources": []
   },
   "help.html": {
     "refer": [
       "usercenter.html",
       "question.html"
-    ]
+    ],
+    "resources": []
   },
   "question.html": {
     "refer": [
       "question-detail.html",
       "help.html"
-    ]
+    ],
+    "resources": []
   },
   "aboutus.html": {
     "refer": [
       "usercenter.html"
-    ]
+    ],
+    "resources": []
   },
   "community.html": {
     "refer": [
       "communitydetail.html",
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "people.html": {
     "refer": [
       "peopledetail.html",
       "communitydetail.html"
-    ]
+    ],
+    "resources": []
   },
   "device.html": {
     "refer": [
       "communitydetail.html"
-    ]
+    ],
+    "resources": []
   },
   "peopledetail.html": {
     "refer": [
       "people.html"
-    ]
+    ],
+    "resources": []
   },
   "communitydetail.html": {
     "refer": [
@@ -163,78 +188,93 @@
       "device.html",
       "community.html",
       "shop02.html"
-    ]
+    ],
+    "resources": []
   },
   "shop02.html": {
     "refer": [
       "communitydetail.html"
-    ]
+    ],
+    "resources": []
   },
   "complaintdetail.html": {
     "refer": [
       "complaint.html"
-    ]
+    ],
+    "resources": []
   },
   "complaint.html": {
     "refer": [
       "complaintdetail.html",
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "examine.html": {
     "refer": [
       "examinedetail.html",
       "shop.html",
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "shop.html": {
     "refer": [
       "examine.html",
       "pay.html",
-      "index.html"
-    ]
+      "index.html",
+      "shopdetail.html"
+    ],
+    "resources": []
   },
   "examinedetail.html": {
     "refer": [
       "examine.html"
-    ]
+    ],
+    "resources": []
   },
   "pay.html": {
     "refer": [
       "shop.html"
-    ]
+    ],
+    "resources": []
   },
   "alert.html": {
     "refer": [
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "model.html": {
     "refer": [
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "sharedetail.html": {
     "refer": [
       "share.html"
-    ]
+    ],
+    "resources": []
   },
   "share.html": {
     "refer": [
       "sharedetail.html",
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "plogin.html": {
     "refer": [
       "Agreement.html",
       "index.html"
-    ]
+    ],
+    "resources": []
   },
   "mlogin.html": {
     "refer": [
       "index.html"
-    ]
+    ],
+    "resources": []
   }
 }
